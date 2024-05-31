@@ -565,6 +565,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 5
   groundCheck: {fileID: 886608593}
+  animator: {fileID: 1267156538}
 --- !u!1 &1852271242
 GameObject:
   m_ObjectHideFlags: 0

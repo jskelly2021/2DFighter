@@ -13,8 +13,10 @@ public class playerMovement : MonoBehaviour
 
     [SerializeField] private BoxCollider2D groundCheck;
     private bool isGrounded = true;
-
     private bool isFacingRight = true;
+
+    [SerializeField] private Animator animator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,22 +30,8 @@ public class playerMovement : MonoBehaviour
         // Horizontal Movement
         HandleHorizontalMove();
 
-        // Is player grounded
-        if (groundCheck.IsTouchingLayers(groundLayerMask))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-
         // Jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            body.velocity = new Vector2(body.velocity.x, jumpForce);
-        }
-
+        HandleJump();
     }
 
 
@@ -63,6 +51,38 @@ public class playerMovement : MonoBehaviour
         {
             isFacingRight = true;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
+        
+        // Animation Check
+        if (xInput != 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+    }
+
+
+    // Handle Jump
+    void HandleJump()
+    {
+        // Is player grounded
+        if (groundCheck.IsTouchingLayers(groundLayerMask))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+        animator.SetBool("isGrounded", isGrounded);
+
+        // Jump
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            body.velocity = new Vector2(body.velocity.x, jumpForce);
         }
     }
 
