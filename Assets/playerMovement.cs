@@ -14,6 +14,8 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private BoxCollider2D groundCheck;
     private bool isGrounded = true;
 
+    private bool isFacingRight = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +26,7 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         // Horizontal Movement
-        float xInput = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2 (xInput * speed, body.velocity.y);
+        HandleHorizontalMove();
 
         // Is player grounded
         if (groundCheck.IsTouchingLayers(groundLayerMask))
@@ -44,4 +45,25 @@ public class playerMovement : MonoBehaviour
         }
 
     }
+
+
+    // Hanle horizontal movement and flip player transform when necessary
+    void HandleHorizontalMove()
+    {
+        float xInput = Input.GetAxis("Horizontal");
+        body.velocity = new Vector2(xInput * speed, body.velocity.y);
+
+        // Flip player
+        if (xInput < 0 && isFacingRight)
+        {
+            isFacingRight = false;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
+        if (xInput > 0 && !isFacingRight)
+        {
+            isFacingRight = true;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
+    }
+
 }
