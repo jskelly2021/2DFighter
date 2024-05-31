@@ -562,7 +562,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   body: {fileID: 1417872885}
-  speed: 5
+  speed: 3
   jumpForce: 5
   groundCheck: {fileID: 886608593}
   animator: {fileID: 1267156538}
