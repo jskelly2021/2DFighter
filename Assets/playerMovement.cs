@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private Animator animator;
 
     public Rigidbody2D body;
 
@@ -14,8 +15,8 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private BoxCollider2D groundCheck;
     private bool isGrounded = true;
     private bool isFacingRight = true;
+    private bool isCrouching = false;
 
-    [SerializeField] private Animator animator;
 
 
     // Start is called before the first frame update
@@ -29,6 +30,9 @@ public class playerMovement : MonoBehaviour
     {
         // Horizontal Movement
         HandleHorizontalMove();
+
+        // Crouch
+        HandleCrouch();
 
         // Jump
         HandleJump();
@@ -64,6 +68,19 @@ public class playerMovement : MonoBehaviour
         }
     }
 
+    // Handles Crouching
+    void HandleCrouch()
+    {
+        if (Input.GetKey(KeyCode.S))
+        {
+            isCrouching = true;
+        }
+        else
+        {
+            isCrouching = false;
+        }
+        animator.SetBool("isCrouching", isCrouching);
+    }
 
     // Handle Jump
     void HandleJump()
