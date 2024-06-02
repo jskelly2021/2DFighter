@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Health : MonoBehaviour
+{
+    [SerializeField] private Animator animator;
+    public int health = 3;
+    private bool isDead = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+
+   
+    public void TakeDamage(int damage)
+    {
+        if (health > damage)
+        {
+            health = health - damage;
+            animator.SetTrigger("hurt");
+        }
+        else
+        {
+            Dead();
+        }
+    }
+
+    public void Dead()
+    {
+        isDead = true;
+        animator.SetBool("isDead", isDead);
+    }
+
+}
