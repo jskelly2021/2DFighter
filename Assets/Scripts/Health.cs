@@ -8,12 +8,6 @@ public class Health : MonoBehaviour
     public int health = 3;
     private bool isDead = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -27,7 +21,6 @@ public class Health : MonoBehaviour
         }
     }
 
-   
     public void TakeDamage(int damage)
     {
         if (health > damage)
