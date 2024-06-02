@@ -45,7 +45,7 @@ public class CharacterBase : MonoBehaviour
         if (IsGrounded())
         {
             body.velocity = new Vector2(body.velocity.x, jumpForce);
-            animator.SetTrigger("isJumping");
+            animator.SetTrigger("jump");
         }
 
     }
