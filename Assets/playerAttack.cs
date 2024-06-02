@@ -16,35 +16,21 @@ public class playerAttack : MonoBehaviour
     void Update()
     {
         // Determine Attack from input
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            AttackFront();
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            AttackBack();
-        }
-        else if (!Input.GetKeyDown(KeyCode.R))
-        {
-            AttackOverhead();
-        }
+        animator.SetBool("isAttackFront", Input.GetKey(KeyCode.F));
+        animator.SetBool("isAttackBack", Input.GetKey(KeyCode.C));
+        animator.SetBool("isAttackOverhead", Input.GetKey(KeyCode.R));
     }
 
     void AttackFront()
     {
-        animator.SetBool("isAttackFront", true);
     }
 
     void AttackBack()
     {
-        animator.SetBool("isAttackBack", true);
-
     }
 
     void AttackOverhead()
     {
-        animator.SetBool("isAttackOverhead", true);
     }
-
 
 }
