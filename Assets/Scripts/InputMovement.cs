@@ -28,7 +28,7 @@ public class InputMovement : MonoBehaviour
     // Jumping
     void HandleJump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
             character.Jump();
     }
 

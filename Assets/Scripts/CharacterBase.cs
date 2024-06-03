@@ -14,17 +14,20 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     private bool isFacingRight = true;
+    private bool isGrounded = true;
 
+    private void Update()
+    {
+        IsGrounded();
+    }
 
     // Move Horizontally
     public void MoveHorizontal(float input)
     {
         body.velocity = new Vector2(input * speed, body.velocity.y);
-
-        Flip(input);
-
         if (input != 0)
         {
+            Flip(input);
             animator.SetBool("isRunning", true);
         }
         else
@@ -42,12 +45,11 @@ public class CharacterBase : MonoBehaviour
     // Jump
     public void Jump()
     {
-        if (IsGrounded())
+        if (isGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, jumpForce);
             animator.SetTrigger("jump");
         }
-
     }
 
     // Flip player
@@ -66,16 +68,17 @@ public class CharacterBase : MonoBehaviour
     }
 
     // Is player grounded
-    public bool IsGrounded()
+    public void IsGrounded()
     {
         if (groundCheck.IsTouchingLayers(groundLayerMask))
         {
-            return true;
+            isGrounded = true;
         }
         else
         {
-            return false;
+            isGrounded = false;
         }
+        animator.SetBool("isGrounded", isGrounded);
     }
 
 }
