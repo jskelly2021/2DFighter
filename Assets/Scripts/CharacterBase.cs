@@ -18,7 +18,7 @@ public class CharacterBase : MonoBehaviour
 
     [SerializeField] private InputComponent input;
     [SerializeField] private MoveComponent movement;
-    [SerializeField] private AnimationComponent;
+    [SerializeField] private AnimationComponent anim;
 
     private characterState state = characterState.idle;
     public enum characterState
@@ -39,6 +39,7 @@ public class CharacterBase : MonoBehaviour
     public void SetCharacterState(characterState newState)
     {
         this.state = newState;
+        anim.Play(state);
     }
 
     private void Update()
