@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInput : InputComponent
@@ -8,6 +6,7 @@ public class PlayerInput : InputComponent
     {
         CheckMoveHorizontal(character);
         CheckJump(character);
+        CheckCrouch(character);
     }
 
     void CheckMoveHorizontal(CharacterBase character)
@@ -22,5 +21,11 @@ public class PlayerInput : InputComponent
         {
             character.Jump();
         }
+    }
+
+    void CheckCrouch(CharacterBase character)
+    {
+        bool isCrouching = Input.GetKey(KeyCode.S);
+        character.Crouch(isCrouching);
     }
 }

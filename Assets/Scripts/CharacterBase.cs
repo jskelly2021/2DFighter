@@ -17,10 +17,12 @@ public class CharacterBase : MonoBehaviour
     private bool isGrounded = true;
 
     [SerializeField] private InputComponent input;
+    [SerializeField] private MoveComponent movement;
 
     private void Update()
     {
         input.GetInput(this);
+        movement.Move(this);
         IsGrounded();
     }
 
