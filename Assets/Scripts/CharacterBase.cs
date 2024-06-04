@@ -18,13 +18,28 @@ public class CharacterBase : MonoBehaviour
 
     [SerializeField] private InputComponent input;
     [SerializeField] private MoveComponent movement;
+    [SerializeField] private AnimationComponent;
 
-    public enum State
+    private characterState state = characterState.idle;
+    public enum characterState
     {
-        idle;
-
+        idle,
+        run,
+        jump,
+        crouch,
+        hurt,
+        dead
     }
 
+    public characterState GetCharacterState()
+    {
+        return state;
+    }
+
+    public void SetCharacterState(characterState newState)
+    {
+        this.state = newState;
+    }
 
     private void Update()
     {
