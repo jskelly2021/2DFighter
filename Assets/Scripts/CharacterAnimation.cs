@@ -9,7 +9,6 @@ public class CharacterAnimation : AnimationComponent
         switch (state)
         {
             case characterState.idle:
-                animator.SetBool("")
                 break;
             case characterState.run:
                 break;
