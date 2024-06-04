@@ -20,7 +20,7 @@ public class CharacterBase : MonoBehaviour
 
     private void Update()
     {
-        input.GetInput();
+        input.GetInput(this);
         IsGrounded();
     }
 

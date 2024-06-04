@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class InputComponent : MonoBehaviour
 {
-    public abstract void GetInput();
+    public abstract void GetInput(CharacterBase character);
 }
