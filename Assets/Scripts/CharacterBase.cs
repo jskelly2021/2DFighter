@@ -21,15 +21,6 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private AnimationComponent anim;
 
     private characterState state = characterState.idle;
-    public enum characterState
-    {
-        idle,
-        run,
-        jump,
-        crouch,
-        hurt,
-        dead
-    }
 
     public characterState GetCharacterState()
     {
@@ -69,7 +60,7 @@ public class CharacterBase : MonoBehaviour
     {
         animator.SetBool("isCrouching", isCrouching);
     }
-    
+
     // Jump
     public void Jump()
     {
@@ -109,4 +100,15 @@ public class CharacterBase : MonoBehaviour
         animator.SetBool("isGrounded", isGrounded);
     }
 
+}
+
+
+public enum characterState
+{
+    idle,
+    run,
+    jump,
+    crouch,
+    hurt,
+    dead
 }
