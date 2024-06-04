@@ -16,8 +16,11 @@ public class CharacterBase : MonoBehaviour
     private bool isFacingRight = true;
     private bool isGrounded = true;
 
+    [SerializeField] private InputComponent input;
+
     private void Update()
     {
+        input.GetInput();
         IsGrounded();
     }
 
