@@ -19,6 +19,13 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private InputComponent input;
     [SerializeField] private MoveComponent movement;
 
+    public enum State
+    {
+        idle;
+
+    }
+
+
     private void Update()
     {
         input.GetInput(this);
