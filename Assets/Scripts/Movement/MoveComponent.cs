@@ -10,7 +10,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     protected CharacterBase character;
     
-    public void GetMovement(CharacterBase character)
+    public void InitMovement(CharacterBase character)
     {
         this.character = character;
         this.body = character.body;
@@ -43,6 +43,19 @@ public abstract class MoveComponent : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+    }
+
+    public MoveComponent ChangeMoveState()
+    {
+        switch (character.GetCharacterState())
+        {
+            case characterState.idle:
+                return new IdleStateMoveAction();
+            case characterState.jump: 
+                return new JumpStateMoveAction();
+            default:
+                return this;
         }
     }
 }

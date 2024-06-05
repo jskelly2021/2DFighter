@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class CharacterBase : MonoBehaviour
 {
@@ -11,42 +9,29 @@ public class CharacterBase : MonoBehaviour
     public LayerMask groundLayerMask;
 
     public InputComponent input;
-    public MoveComponent action;
+    public MoveComponent movement;
     public AnimationComponent anim;
 
     public float speed = 5f;
     public float jumpForce = 5f;
 
     private characterState state = characterState.idle;
+
     void Start()
     {
-        input = gameObject.AddComponent<InputComponent>();
-        action = gameObject.AddComponent<IdleStateMoveAction>();
-    }
-
-    public characterState GetCharacterState()
-    {
-        return state;
+        input.InitInput(this);
+        movement = GetComponent<IdleStateMoveAction>();
+        movement.InitMovement(this);
     }
 
     public void SetCharacterState(characterState newState)
     {
         this.state = newState;
-        
-        switch (state)
-        {
-            case characterState.idle:
-                action = gameObject.AddComponent<IdleStateMoveAction>();
-                break;
-            case characterState.jump:
-                action = gameObject.AddComponent<JumpStateMoveAction>();
-                break;
-            default:
-                break;
-        }
-
+        movement = movement.ChangeMoveState();
+        movement.InitMovement(this);
         anim.Play(state);
     }
+    public characterState GetCharacterState() { return state; }
 
     private float direction = 0f;
     private bool isJumping = false;

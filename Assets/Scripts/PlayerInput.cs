@@ -4,7 +4,7 @@ public class PlayerInput : InputComponent
 {
     private CharacterBase character;
 
-    public override void GetInput(CharacterBase character)
+    public override void InitInput(CharacterBase character)
     {
         this.character = character;
     }
