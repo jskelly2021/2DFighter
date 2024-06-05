@@ -1,4 +1,5 @@
 
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerMovement : MoveComponent
@@ -14,11 +15,20 @@ public class PlayerMovement : MoveComponent
     private bool isFacingRight = true;
     private bool isGrounded = true;
 
-    private float horizontalInput;
+    private float walkDirection = 0f;
+    private bool isJumping = false;
+    private bool isCrouching = false;
 
     public override void GetMovement(CharacterBase character)
     {
         this.character = character;
+    }
+
+    private void Update()
+    {
+        walkDirection = character.GetDirection();
+        isJumping = character.GetJumping();
+        isCrouching = character.GetCrouching();
     }
 
     private void FixedUpdate()
@@ -30,18 +40,24 @@ public class PlayerMovement : MoveComponent
 
     public void MoveHorizontal()
     {
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        body.velocity = new Vector2(walkDirection * speed, body.velocity.y);
         FlipPlayer(body.velocity.x);
     }
 
     public void Crouch()
     {
-        
+        if (isCrouching)
+        {
+
+        }
     }
 
     public void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, jumpForce);
+        if (isJumping)
+        {
+            body.velocity = new Vector2(body.velocity.x, jumpForce);
+        }
     }
 
     public void FlipPlayer(float direction)

@@ -19,7 +19,7 @@ public class PlayerInput : InputComponent
     void CheckMoveHorizontal()
     {
         float xInput = Input.GetAxis("Horizontal");   
-        character.SetHorizontalVelocity(xInput);
+        character.SetDirection(xInput);
     }
 
     void CheckJump()
@@ -33,11 +33,4 @@ public class PlayerInput : InputComponent
         bool isCrouching = Input.GetKey(KeyCode.S);
         character.SetCrouching(isCrouching);
     }
-}
-
-public enum playerInput
-{
-    run,
-    jump,
-    crouch
 }
