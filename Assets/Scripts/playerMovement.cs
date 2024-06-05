@@ -8,8 +8,8 @@ public class PlayerMovement : MoveComponent
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private BoxCollider2D groundCheck;
 
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float jumpForce = 5f;
 
     private CharacterBase character;
     private bool isFacingRight = true;

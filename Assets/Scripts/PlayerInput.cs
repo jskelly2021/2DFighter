@@ -24,7 +24,7 @@ public class PlayerInput : InputComponent
 
     void CheckJump()
     {
-        bool isJumping = (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W));
+        bool isJumping = (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W));
         character.SetJumping(isJumping);
     }
 
