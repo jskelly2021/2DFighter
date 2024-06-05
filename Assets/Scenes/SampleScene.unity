@@ -601,13 +601,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4753c3c53533d499c9c3bf9e2cc10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
+  body: {fileID: 1417872885}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  groundCheck: {fileID: 0}
-  speed: 0
-  jumpForce: 0
+  groundCheck: {fileID: 886608593}
+  speed: 4
+  jumpForce: 4
 --- !u!1 &1852271242
 GameObject:
   m_ObjectHideFlags: 0
