@@ -3,7 +3,6 @@ using UnityEngine;
 
 public abstract class MoveComponent : MonoBehaviour
 {
-    [SerializeField] protected LayerMask groundLayerMask;
     protected Rigidbody2D body;
 
     protected bool isFacingRight = true;
@@ -37,7 +36,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public virtual void IsGrounded()
     {
-        if (character.groundCheck.IsTouchingLayers(groundLayerMask))
+        if (character.groundCheck.IsTouchingLayers(character.groundLayerMask))
         {
             isGrounded = true;
         }

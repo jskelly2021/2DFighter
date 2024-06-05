@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class JumpStateMoveAction : MoveComponent
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpForce = 5f;
-
     private float walkDirection = 0f;
     private bool isJumping = false;
     private bool isCrouching = false;
@@ -25,13 +22,13 @@ public class JumpStateMoveAction : MoveComponent
 
     public override void MoveHorizontal()
     {
-        body.velocity = new Vector2(walkDirection * speed, body.velocity.y);
+        body.velocity = new Vector2(walkDirection * character.speed, body.velocity.y);
         FlipCharacter(body.velocity.x);
     }
 
     public override void IsGrounded()
     {
-        if (character.groundCheck.IsTouchingLayers(groundLayerMask))
+        if (character.groundCheck.IsTouchingLayers(character.groundLayerMask))
         {
             isGrounded = true;
             character.SetCharacterState(characterState.idle);

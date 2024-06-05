@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class IdleStateMoveAction : MoveComponent
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpForce = 5f;
-
     private float walkDirection = 0f;
     private bool isJumping = false;
     private bool isCrouching = false;
@@ -27,7 +24,7 @@ public class IdleStateMoveAction : MoveComponent
 
     public override void MoveHorizontal()
     {
-        body.velocity = new Vector2(walkDirection * speed, body.velocity.y);
+        body.velocity = new Vector2(walkDirection * character.speed, body.velocity.y);
         FlipCharacter(body.velocity.x);
 
         if (walkDirection != 0)
@@ -46,7 +43,7 @@ public class IdleStateMoveAction : MoveComponent
     {
         if (isJumping && isGrounded)
         {
-            body.velocity = new Vector2(body.velocity.x, jumpForce);
+            body.velocity = new Vector2(body.velocity.x, character.jumpForce);
             character.SetCharacterState(characterState.jump);
         }
     }
