@@ -3,25 +3,47 @@ using UnityEngine;
 
 public abstract class MoveComponent : MonoBehaviour
 {
+    [SerializeField] protected LayerMask groundLayerMask;
+    protected Rigidbody2D body;
+
+    protected bool isFacingRight = true;
+    protected bool isGrounded = true;
+
     protected CharacterBase character;
     
     public void GetMovement(CharacterBase character)
     {
         this.character = character;
+        this.body = character.body;
     }
 
-    protected virtual void MoveHorizontal()
-    {}
+    public virtual void MoveHorizontal() {}
+    public virtual void Crouch() {}
+    public virtual void Jump() {}
 
-    protected virtual void Crouch()
-    {}
+    public virtual void FlipCharacter(float direction)
+    {
+        if (direction < 0 && isFacingRight)
+        {
+            isFacingRight = false;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
+        if (direction > 0 && !isFacingRight)
+        {
+            isFacingRight = true;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
+    }
 
-    protected virtual void Jump()
-    {}
-
-    protected virtual void FlipPlayer(float direction)
-    {}
-
-    protected virtual void IsGrounded()
-    {}
+    public virtual void IsGrounded()
+    {
+        if (character.groundCheck.IsTouchingLayers(groundLayerMask))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
 }

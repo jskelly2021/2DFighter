@@ -6,6 +6,9 @@ using UnityEngine.Windows;
 
 public class CharacterBase : MonoBehaviour
 {
+    [SerializeField] public Rigidbody2D body;
+    [SerializeField] public BoxCollider2D groundCheck;
+
     [SerializeField] private InputComponent input;
     [SerializeField] private MoveComponent movement;
     [SerializeField] private AnimationComponent anim;
