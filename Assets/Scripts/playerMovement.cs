@@ -11,18 +11,12 @@ public class PlayerMovement : MoveComponent
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
 
-    private CharacterBase character;
     private bool isFacingRight = true;
     private bool isGrounded = true;
 
     private float walkDirection = 0f;
     private bool isJumping = false;
     private bool isCrouching = false;
-
-    public override void GetMovement(CharacterBase character)
-    {
-        this.character = character;
-    }
 
     private void Update()
     {
