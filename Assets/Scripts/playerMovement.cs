@@ -8,7 +8,7 @@ public class PlayerMovement : MoveComponent
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private BoxCollider2D groundCheck;
 
-    [SerializeField] private float speed = 3f;
+    [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
 
     private CharacterBase character;
@@ -26,6 +26,7 @@ public class PlayerMovement : MoveComponent
 
     private void Update()
     {
+        IsGrounded();
         walkDirection = character.GetDirection();
         isJumping = character.GetJumping();
         isCrouching = character.GetCrouching();
@@ -42,21 +43,25 @@ public class PlayerMovement : MoveComponent
     {
         body.velocity = new Vector2(walkDirection * speed, body.velocity.y);
         FlipPlayer(body.velocity.x);
+
+        if (walkDirection != 0)
+            character.SetCharacterState(characterState.run);
     }
 
     public void Crouch()
     {
         if (isCrouching)
         {
-
+            character.SetCharacterState(characterState.crouch);
         }
     }
 
     public void Jump()
     {
-        if (isJumping)
+        if (isJumping && isGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, jumpForce);
+            character.SetCharacterState(characterState.jump);
         }
     }
 
@@ -78,6 +83,7 @@ public class PlayerMovement : MoveComponent
     {
         if (groundCheck.IsTouchingLayers(groundLayerMask))
         {
+            character.SetCharacterState(characterState.idle);
             isGrounded = true;
         }
         else
