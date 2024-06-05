@@ -27,19 +27,18 @@ public class CharacterBase : MonoBehaviour
         anim.Play(state);
     }
 
+    private Vector2 velocity = Vector2.zero;
+    private bool isJumping = false;
+    private bool isCrouching = false;
 
-    public void MoveHorizontal(float input)
-    {
-    }
+    public void SetHorizontalVelocity(float input) { velocity.x = input; }
+    public Vector2 GetHorizontalVelocity() { return velocity; }
 
-    public void Crouch(bool isCrouching)
-    {
-    }
+    public void SetJumping(bool input) { isJumping = input; }
+    public bool GetJumping(bool input) { return isJumping; }
 
-    public void Jump()
-    {
-       
-    }
+    public void SetCrouching(bool input) { isCrouching = input; }
+    public bool GetCrouching(bool input) { return isCrouching; }
 
 }
 

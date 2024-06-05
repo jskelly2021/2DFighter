@@ -14,6 +14,7 @@ public class PlayerMovement : MoveComponent
     private bool isFacingRight = true;
     private bool isGrounded = true;
 
+    private float horizontalInput;
 
     public override void GetMovement(CharacterBase character)
     {
@@ -27,53 +28,36 @@ public class PlayerMovement : MoveComponent
         Jump();
     }
 
-    // Move Horizontally
     public void MoveHorizontal()
     {
-        body.velocity = new Vector2(input * speed, body.velocity.y);
-        if (input != 0)
-        {
-            Flip(input);
-            animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            animator.SetBool("isRunning", false);
-        }
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        FlipPlayer(body.velocity.x);
     }
 
-    // Crouching
     public void Crouch()
     {
         
     }
 
-    // Jump
     public void Jump()
     {
-        if (isGrounded)
-        {
-            body.velocity = new Vector2(body.velocity.x, jumpForce);
-            animator.SetTrigger("jump");
-        }
+        body.velocity = new Vector2(body.velocity.x, jumpForce);
     }
 
-    // Flip player
-    public void Flip(float input)
+    public void FlipPlayer(float direction)
     {
-        if (input < 0 && isFacingRight)
+        if (direction < 0 && isFacingRight)
         {
             isFacingRight = false;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-        if (input > 0 && !isFacingRight)
+        if (direction > 0 && !isFacingRight)
         {
             isFacingRight = true;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
 
-    // Is player grounded
     public void IsGrounded()
     {
         if (groundCheck.IsTouchingLayers(groundLayerMask))
@@ -84,6 +68,10 @@ public class PlayerMovement : MoveComponent
         {
             isGrounded = false;
         }
-        animator.SetBool("isGrounded", isGrounded);
+    }
+
+    public void Move()
+    {
+        
     }
 }
