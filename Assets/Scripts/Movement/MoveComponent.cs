@@ -44,10 +44,10 @@ public class MoveComponent : MonoBehaviour
             case characterState.idle:
                 idle.enabled = true;
                 break;
-            case characterState.jump:
-                jump.enabled = true;
-                break;
             case characterState.run:
+                run.enabled = true;
+                break;
+            case characterState.jump:
                 jump.enabled = true;
                 break;
             default:

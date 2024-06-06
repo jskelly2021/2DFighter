@@ -6,8 +6,12 @@ public abstract class CharacterState : MonoBehaviour
 {
     protected Rigidbody2D body;
 
-    protected bool isFacingRight = true;
-    protected bool isGrounded = true;
+    protected bool isFacingRight;
+    protected bool isGrounded;
+
+    protected float walkDirection = 0f;
+    protected bool isJumping = false;
+    protected bool isCrouching = false;
 
     protected CharacterBase character;
 
@@ -15,28 +19,36 @@ public abstract class CharacterState : MonoBehaviour
     {
         character = GetComponent<CharacterBase>();
         body = character.body;
+
+        isFacingRight = character.IsFacingRight();
+        isGrounded = character.IsGrounded();
     }
 
     public virtual void MoveHorizontal() { }
     public virtual void Crouch() { }
     public virtual void Jump() { }
 
-    public virtual void FlipCharacter(float direction)
+    public virtual void CheckFlipCharacter()
     {
-        if (direction < 0 && isFacingRight)
+        isFacingRight = character.IsFacingRight();
+
+        if (body.velocity.x < 0 && isFacingRight)
         {
             isFacingRight = false;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-        if (direction > 0 && !isFacingRight)
+        else if (body.velocity.x > 0 && !isFacingRight)
         {
             isFacingRight = true;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
+        character.SetFacingRight(isFacingRight);
     }
 
     public virtual void IsGrounded()
     {
+        isGrounded = character.IsGrounded();
+
         if (character.groundCheck.IsTouchingLayers(character.groundLayerMask))
         {
             isGrounded = true;
@@ -45,6 +57,7 @@ public abstract class CharacterState : MonoBehaviour
         {
             isGrounded = false;
         }
+        character.SetGrounded(isGrounded);
     }
 }
 

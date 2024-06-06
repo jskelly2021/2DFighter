@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class JumpStateMoveAction : CharacterState
 {
-    private float walkDirection = 0f;
-    private bool isJumping = false;
-    private bool isCrouching = false;
-
     void Update()
     {
         IsGrounded();
+        CheckFlipCharacter();
         walkDirection = character.GetDirection();
         isJumping = character.GetJumping();
         isCrouching = character.GetCrouching();
@@ -23,7 +20,6 @@ public class JumpStateMoveAction : CharacterState
     public override void MoveHorizontal()
     {
         body.velocity = new Vector2(walkDirection * character.speed, body.velocity.y);
-        FlipCharacter(body.velocity.x);
     }
 
     public override void IsGrounded()

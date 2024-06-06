@@ -14,24 +14,28 @@ public class CharacterBase : MonoBehaviour
 
     public float speed = 5f;
     public float jumpForce = 5f;
+    private float direction = 0f;
+    private bool isJumping = false;
+    private bool isCrouching = false;
+    private bool isFacingRight = true;
+    private bool isGrounded = true;
 
     private characterState state = characterState.idle;
 
     public void SetCharacterState(characterState newState)
     {
-        this.state = newState;
+        if (state != newState)
+        {
+            this.state = newState;
+            anim.Play(state);
+        }
         movement.ChangeMoveState();
-        anim.Play(state);
     }
 
     public characterState GetCharacterState() 
     { 
         return state; 
     }
-
-    private float direction = 0f;
-    private bool isJumping = false;
-    private bool isCrouching = false;
 
     public void SetDirection (float input) { direction = input; }
     public float GetDirection() { return direction; }
@@ -41,4 +45,11 @@ public class CharacterBase : MonoBehaviour
 
     public void SetCrouching(bool input) { isCrouching = input; }
     public bool GetCrouching() { return isCrouching; }
+
+
+    public void SetFacingRight(bool input) { isFacingRight = input; }
+    public bool IsFacingRight() { return isFacingRight; }
+
+    public void SetGrounded(bool input) { isGrounded = input; }
+    public bool IsGrounded() { return isGrounded; }
 }
