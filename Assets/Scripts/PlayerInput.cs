@@ -19,7 +19,7 @@ public class PlayerInput : InputComponent
     void CheckMoveHorizontal()
     {
         float xInput = Input.GetAxis("Horizontal");   
-        character.SetDirection(xInput);
+        character.SetWalkDirection(xInput);
     }
 
     void CheckJump()

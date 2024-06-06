@@ -12,15 +12,15 @@ public class IdleStateMoveAction : CharacterState
 
     public override void MoveHorizontal()
     {
-        body.velocity = new Vector2(walkDirection * character.speed, body.velocity.y);
+        body.velocity = new Vector2(character.GetWalkDirection() * character.speed, body.velocity.y);
 
-        if (walkDirection != 0)
+        if (character.GetWalkDirection() != 0)
             character.SetCharacterState(characterState.run);
     }
 
     public override void Crouch()
     {
-        if (isCrouching)
+        if (character.IsCrouching())
         {
             character.SetCharacterState(characterState.crouch);
         }
@@ -28,7 +28,7 @@ public class IdleStateMoveAction : CharacterState
 
     public override void Jump()
     {
-        if (isJumping && isGrounded)
+        if (character.IsJumping() && character.IsGrounded())
         {
             body.velocity = new Vector2(body.velocity.x, character.jumpForce);
             character.SetCharacterState(characterState.jump);

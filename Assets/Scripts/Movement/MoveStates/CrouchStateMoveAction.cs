@@ -12,7 +12,7 @@ public class CrouchStateMoveAction : CharacterState
 
     public override void Crouch()
     {
-        if (isCrouching)
+        if (character.IsCrouching())
         {
             character.SetCharacterState(characterState.crouch);
         }
