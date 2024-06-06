@@ -25,12 +25,14 @@ public class MoveComponent : MonoBehaviour
     {
         idle = character.gameObject.AddComponent<IdleStateMoveAction>();
         jump = character.gameObject.AddComponent<JumpStateMoveAction>();
+        run = character.gameObject.AddComponent<RunStateMoveAction>();
     }
 
     public void DisableStates()
     {
         idle.enabled = false;
         jump.enabled = false;
+        run.enabled = false;
     }
 
     public void ChangeMoveState()
@@ -43,6 +45,9 @@ public class MoveComponent : MonoBehaviour
                 idle.enabled = true;
                 break;
             case characterState.jump:
+                jump.enabled = true;
+                break;
+            case characterState.run:
                 jump.enabled = true;
                 break;
             default:

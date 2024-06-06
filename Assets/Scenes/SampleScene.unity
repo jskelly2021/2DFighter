@@ -495,8 +495,8 @@ GameObject:
   - component: {fileID: 1417872885}
   - component: {fileID: 1417872891}
   - component: {fileID: 1417872892}
-  - component: {fileID: 1417872893}
   - component: {fileID: 1417872894}
+  - component: {fileID: 1417872893}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -563,9 +563,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 1417872885}
   groundCheck: {fileID: 886608593}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   input: {fileID: 1417872892}
   movement: {fileID: 1417872894}
   anim: {fileID: 1417872893}
+  speed: 5
+  jumpForce: 5
 --- !u!114 &1417872892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,14 +605,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1417872884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f887be1827829447ab8e5a7daad9936, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e77a3878c895524bb82b9e6c4d41686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  speed: 5
-  jumpForce: 5
 --- !u!1 &1852271242
 GameObject:
   m_ObjectHideFlags: 0
