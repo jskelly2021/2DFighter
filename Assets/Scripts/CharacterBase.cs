@@ -12,6 +12,8 @@ public class CharacterBase : MonoBehaviour
     public MoveComponent movement;
     public AnimationComponent anim;
 
+    private CharacterState currentCharacterState;
+
     public float speed = 5f;
     public float jumpForce = 5f;
 
@@ -20,15 +22,13 @@ public class CharacterBase : MonoBehaviour
     void Start()
     {
         input.InitInput(this);
-        movement = GetComponent<IdleStateMoveAction>();
-        movement.InitMovement(this);
+        movement.InitMove(this);
     }
 
     public void SetCharacterState(characterState newState)
     {
         this.state = newState;
-        movement = movement.ChangeMoveState();
-        movement.InitMovement(this);
+        movement.ChangeMoveState();
         anim.Play(state);
     }
     public characterState GetCharacterState() { return state; }
@@ -49,12 +49,3 @@ public class CharacterBase : MonoBehaviour
 }
 
 
-public enum characterState
-{
-    idle,
-    run,
-    jump,
-    crouch,
-    hurt,
-    dead
-}

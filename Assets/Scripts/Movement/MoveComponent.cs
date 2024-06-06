@@ -1,61 +1,39 @@
 
+using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class MoveComponent : MonoBehaviour
+public class MoveComponent : MonoBehaviour
 {
-    protected Rigidbody2D body;
+    private CharacterBase character;
 
-    protected bool isFacingRight = true;
-    protected bool isGrounded = true;
+    private CharacterState currentCharacterState;
 
-    protected CharacterBase character;
-    
-    public void InitMovement(CharacterBase character)
+    public void InitMove(CharacterBase character)
     {
         this.character = character;
-        this.body = character.body;
+
+        currentCharacterState = character.gameObject.AddComponent<IdleStateMoveAction>();
+        currentCharacterState.InitState(character);
+        
+        character.SetCharacterState(characterState.idle);
     }
 
-    public virtual void MoveHorizontal() {}
-    public virtual void Crouch() {}
-    public virtual void Jump() {}
-
-    public virtual void FlipCharacter(float direction)
-    {
-        if (direction < 0 && isFacingRight)
-        {
-            isFacingRight = false;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-        }
-        if (direction > 0 && !isFacingRight)
-        {
-            isFacingRight = true;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-        }
-    }
-
-    public virtual void IsGrounded()
-    {
-        if (character.groundCheck.IsTouchingLayers(character.groundLayerMask))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
-
-    public MoveComponent ChangeMoveState()
+    public CharacterState ChangeMoveState()
     {
         switch (character.GetCharacterState())
         {
             case characterState.idle:
-                return new IdleStateMoveAction();
-            case characterState.jump: 
-                return new JumpStateMoveAction();
+                currentCharacterState = character.gameObject.AddComponent<IdleStateMoveAction>();
+                break;
+            case characterState.jump:
+                currentCharacterState = character.gameObject.AddComponent<JumpStateMoveAction>();
+                break;
             default:
-                return this;
+                return currentCharacterState;
         }
+
+        currentCharacterState.InitState(character);
+        return currentCharacterState;
     }
+
 }

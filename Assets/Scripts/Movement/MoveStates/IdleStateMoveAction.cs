@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class IdleStateMoveAction : MoveComponent
+public class IdleStateMoveAction : CharacterState
 {
     private float walkDirection = 0f;
     private bool isJumping = false;
