@@ -11,10 +11,10 @@ public abstract class CharacterState : MonoBehaviour
 
     protected CharacterBase character;
 
-    public void InitState(CharacterBase character)
+    private void Awake()
     {
-        this.character = character;
-        this.body = character.body;
+        character = GetComponent<CharacterBase>();
+        body = character.body;
     }
 
     public virtual void MoveHorizontal() { }

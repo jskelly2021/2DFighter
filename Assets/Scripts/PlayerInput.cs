@@ -4,9 +4,9 @@ public class PlayerInput : InputComponent
 {
     private CharacterBase character;
 
-    public override void InitInput(CharacterBase character)
+    private void Awake()
     {
-        this.character = character;
+        character = GetComponent<CharacterBase>();
     }
 
     public void Update()

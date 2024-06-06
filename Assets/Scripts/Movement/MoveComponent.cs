@@ -6,35 +6,48 @@ public class MoveComponent : MonoBehaviour
 {
     private CharacterBase character;
 
-    private CharacterState currentCharacterState;
+    private CharacterState idle;
+    private CharacterState run;
+    private CharacterState jump;
+    private CharacterState crouch;
+    private CharacterState hurt;
+    private CharacterState dead;
 
-    public void InitMove(CharacterBase character)
+    void Awake()
     {
-        this.character = character;
-
-        currentCharacterState = character.gameObject.AddComponent<IdleStateMoveAction>();
-        currentCharacterState.InitState(character);
-        
+        character = GetComponent<CharacterBase>();
+        InitStates();
+        DisableStates();
         character.SetCharacterState(characterState.idle);
     }
 
-    public CharacterState ChangeMoveState()
+    public void InitStates()
     {
+        idle = character.gameObject.AddComponent<IdleStateMoveAction>();
+        jump = character.gameObject.AddComponent<JumpStateMoveAction>();
+    }
+
+    public void DisableStates()
+    {
+        idle.enabled = false;
+        jump.enabled = false;
+    }
+
+    public void ChangeMoveState()
+    {
+        DisableStates();
+
         switch (character.GetCharacterState())
         {
-            currentCharacterState.gameObject.
             case characterState.idle:
-                currentCharacterState = character.gameObject.AddComponent<IdleStateMoveAction>();
+                idle.enabled = true;
                 break;
             case characterState.jump:
-                currentCharacterState = character.gameObject.AddComponent<JumpStateMoveAction>();
+                jump.enabled = true;
                 break;
             default:
-                return currentCharacterState;
+                break;
         }
-
-        currentCharacterState.InitState(character);
-        return currentCharacterState;
     }
 
 }

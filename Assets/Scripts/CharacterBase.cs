@@ -12,18 +12,10 @@ public class CharacterBase : MonoBehaviour
     public MoveComponent movement;
     public AnimationComponent anim;
 
-    private CharacterState currentCharacterState;
-
     public float speed = 5f;
     public float jumpForce = 5f;
 
     private characterState state = characterState.idle;
-
-    void Start()
-    {
-        input.InitInput(this);
-        movement.InitMove(this);
-    }
 
     public void SetCharacterState(characterState newState)
     {
@@ -31,7 +23,11 @@ public class CharacterBase : MonoBehaviour
         movement.ChangeMoveState();
         anim.Play(state);
     }
-    public characterState GetCharacterState() { return state; }
+
+    public characterState GetCharacterState() 
+    { 
+        return state; 
+    }
 
     private float direction = 0f;
     private bool isJumping = false;
@@ -45,7 +41,4 @@ public class CharacterBase : MonoBehaviour
 
     public void SetCrouching(bool input) { isCrouching = input; }
     public bool GetCrouching() { return isCrouching; }
-
 }
-
-
