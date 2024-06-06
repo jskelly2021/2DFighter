@@ -22,6 +22,7 @@ public class MoveComponent : MonoBehaviour
     {
         switch (character.GetCharacterState())
         {
+            currentCharacterState.gameObject.
             case characterState.idle:
                 currentCharacterState = character.gameObject.AddComponent<IdleStateMoveAction>();
                 break;
