@@ -6,7 +6,6 @@ public class RunStateMoveAction : CharacterState
     private void FixedUpdate()
     {
         MoveHorizontal();
-        Crouch();
         Jump();
     }
 

@@ -26,6 +26,7 @@ public class MoveComponent : MonoBehaviour
         idle = character.gameObject.AddComponent<IdleStateMoveAction>();
         jump = character.gameObject.AddComponent<JumpStateMoveAction>();
         run = character.gameObject.AddComponent<RunStateMoveAction>();
+        crouch = character.gameObject.AddComponent<CrouchStateMoveAction>();
     }
 
     public void DisableStates()
@@ -33,6 +34,7 @@ public class MoveComponent : MonoBehaviour
         idle.enabled = false;
         jump.enabled = false;
         run.enabled = false;
+        crouch.enabled = false;
     }
 
     public void ChangeMoveState()
@@ -49,6 +51,13 @@ public class MoveComponent : MonoBehaviour
                 break;
             case characterState.jump:
                 jump.enabled = true;
+                break;
+            case characterState.crouch:
+                crouch.enabled = true;
+                break;
+            case characterState.hurt:
+                break;
+            case characterState.dead:
                 break;
             default:
                 break;
