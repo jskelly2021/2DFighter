@@ -24,6 +24,15 @@ public abstract class CharacterState : MonoBehaviour
         isGrounded = character.IsGrounded();
     }
 
+    void Update()
+    {
+        IsGrounded();
+        CheckFlipCharacter();
+        walkDirection = character.GetDirection();
+        isJumping = character.GetJumping();
+        isCrouching = character.GetCrouching();
+    }
+
     public virtual void MoveHorizontal() { }
     public virtual void Crouch() { }
     public virtual void Jump() { }

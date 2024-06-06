@@ -3,15 +3,6 @@ using UnityEngine;
 
 public class RunStateMoveAction : CharacterState
 {
-    void Update()
-    {
-        IsGrounded();
-        CheckFlipCharacter();
-        walkDirection = character.GetDirection();
-        isJumping = character.GetJumping();
-        isCrouching = character.GetCrouching();
-    }
-
     private void FixedUpdate()
     {
         MoveHorizontal();
@@ -25,14 +16,6 @@ public class RunStateMoveAction : CharacterState
 
         if (walkDirection == 0)
             character.SetCharacterState(characterState.idle);
-    }
-
-    public override void Crouch()
-    {
-        if (isCrouching)
-        {
-            character.SetCharacterState(characterState.crouch);
-        }
     }
 
     public override void Jump()

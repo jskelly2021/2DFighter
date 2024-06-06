@@ -3,15 +3,6 @@ using UnityEngine;
 
 public class JumpStateMoveAction : CharacterState
 {
-    void Update()
-    {
-        IsGrounded();
-        CheckFlipCharacter();
-        walkDirection = character.GetDirection();
-        isJumping = character.GetJumping();
-        isCrouching = character.GetCrouching();
-    }
-
     private void FixedUpdate()
     {
         MoveHorizontal();
