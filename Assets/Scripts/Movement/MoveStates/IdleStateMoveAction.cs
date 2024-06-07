@@ -3,14 +3,6 @@ using UnityEngine;
 
 public class IdleStateMoveAction : CharacterState
 {
-    private void FixedUpdate()
-    {
-        MoveHorizontal();
-        Crouch();
-        Jump();
-        Hurt();
-    }
-
     public override void MoveHorizontal()
     {
         body.velocity = new Vector2(character.GetWalkDirection() * character.speed, body.velocity.y);

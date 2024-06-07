@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class CrouchStateMoveAction : CharacterState
 {
-    private void FixedUpdate()
-    {
-        MoveHorizontal();
-        Crouch();
-    }
-
     public override void MoveHorizontal()
     {
         body.velocity = new Vector2(0, body.velocity.y);
@@ -25,5 +19,4 @@ public class CrouchStateMoveAction : CharacterState
             character.SetCharacterState(characterState.idle);
         }
     }
-
 }

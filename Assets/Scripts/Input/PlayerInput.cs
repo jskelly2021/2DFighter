@@ -38,7 +38,7 @@ public class PlayerInput : InputComponent
     void CheckDead()
     {
         bool isDead = Input.GetKey(KeyCode.K);
-        character.SetIsDead(isDead);
+        character.SetDead(isDead);
     }
 
 }

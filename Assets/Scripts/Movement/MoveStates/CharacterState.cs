@@ -18,6 +18,15 @@ public abstract class CharacterState : MonoBehaviour
         CheckFlipCharacter();
     }
 
+    private void FixedUpdate()
+    {
+        MoveHorizontal();
+        Crouch();
+        Jump();
+        Hurt();
+        Dead();
+    }
+
     protected void CheckFlipCharacter()
     {
         if (body.velocity.x < 0 && character.IsFacingRight())

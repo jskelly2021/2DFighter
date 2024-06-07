@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class JumpStateMoveAction : CharacterState
 {
-    private void FixedUpdate()
-    {
-        MoveHorizontal();
-    }
-
     public override void MoveHorizontal()
     {
         body.velocity = new Vector2(character.GetWalkDirection() * character.speed, body.velocity.y);
