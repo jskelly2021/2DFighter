@@ -20,6 +20,7 @@ public class CharacterBase : MonoBehaviour
     private bool isGrounded = true;
 
     private bool isHurt = false;
+    private bool isDead = false;
 
     private characterState state = characterState.idle;
 
@@ -47,6 +48,8 @@ public class CharacterBase : MonoBehaviour
     public void SetStunTime(float input) { stunTime = input; }
     public float GetStunTime() { return stunTime; }
 
+    public void SetDead(bool input) { isDead = input; }
+    public bool IsDead() { return isDead; }
 }
 
 public enum characterState

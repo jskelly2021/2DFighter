@@ -48,6 +48,13 @@ public abstract class CharacterState : MonoBehaviour
     public virtual void Crouch() { }
     public virtual void Jump() { }
     public virtual void Hurt() { }
+    public virtual void Dead() 
+    {
+        if (character.IsDead())
+        {
+            character.SetCharacterState(characterState.dead);
+        }
+    }
 }
 
 
