@@ -3,5 +3,24 @@ using UnityEngine;
 
 public abstract class AnimationComponent : MonoBehaviour
 {
-    public abstract void Play(characterState state);
+    [SerializeField] protected Animator animator;
+ 
+    protected CharacterBase character;
+    protected characterState currentCharacterState;
+
+    private void Awake()
+    {
+        character = GetComponent<CharacterBase>();
+    }
+
+    private void Update()
+    {
+        if (character.GetCharacterState() != currentCharacterState)
+        {
+            currentCharacterState = character.GetCharacterState();
+            Play();
+        }
+    }
+
+    public abstract void Play();
 }

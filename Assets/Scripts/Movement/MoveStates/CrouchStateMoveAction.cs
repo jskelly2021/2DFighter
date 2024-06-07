@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class CrouchStateMoveAction : CharacterState
 {
     private void FixedUpdate()
     {
+        MoveHorizontal();
         Crouch();
+    }
+
+    public override void MoveHorizontal()
+    {
+        body.velocity = new Vector2(0, body.velocity.y);
     }
 
     public override void Crouch()

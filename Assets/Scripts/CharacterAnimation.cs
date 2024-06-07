@@ -1,12 +1,12 @@
 
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterAnimation : AnimationComponent
 {
-    [SerializeField] private Animator animator;
-    public override void Play(characterState state)
+    public override void Play()
     {
-        switch (state)
+        switch (currentCharacterState)
         {
             case characterState.idle:
                 animator.SetTrigger("idle");

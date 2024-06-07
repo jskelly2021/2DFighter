@@ -13,15 +13,26 @@ public class MoveComponent : MonoBehaviour
     private CharacterState hurt;
     private CharacterState dead;
 
-    void Awake()
+    private characterState currentCharacterState;
+
+    private void Awake()
     {
         character = GetComponent<CharacterBase>();
         InitStates();
-        DisableStates();
+        DisableAllStates();
         character.SetCharacterState(characterState.idle);
     }
 
-    public void InitStates()
+    private void Update()
+    {
+        if (character.GetCharacterState() != currentCharacterState)
+        {
+            currentCharacterState = character.GetCharacterState();
+            ChangeMoveState();
+        }
+    }
+
+    private void InitStates()
     {
         idle = character.gameObject.AddComponent<IdleStateMoveAction>();
         jump = character.gameObject.AddComponent<JumpStateMoveAction>();
@@ -29,7 +40,7 @@ public class MoveComponent : MonoBehaviour
         crouch = character.gameObject.AddComponent<CrouchStateMoveAction>();
     }
 
-    public void DisableStates()
+    public void DisableAllStates()
     {
         idle.enabled = false;
         jump.enabled = false;
@@ -37,11 +48,11 @@ public class MoveComponent : MonoBehaviour
         crouch.enabled = false;
     }
 
-    public void ChangeMoveState()
+    private void ChangeMoveState()
     {
-        DisableStates();
+        DisableAllStates();
 
-        switch (character.GetCharacterState())
+        switch (currentCharacterState)
         {
             case characterState.idle:
                 idle.enabled = true;

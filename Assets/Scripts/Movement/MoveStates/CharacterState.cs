@@ -12,7 +12,7 @@ public abstract class CharacterState : MonoBehaviour
         body = character.body;
     }
 
-    void Update()
+    private void Update()
     {
         IsGrounded();
         CheckFlipCharacter();
@@ -22,7 +22,7 @@ public abstract class CharacterState : MonoBehaviour
     {
         if (body.velocity.x < 0 && character.IsFacingRight())
         {
-            character.SetFacingRight(true);
+            character.SetFacingRight(false);
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
         else if (body.velocity.x > 0 && !character.IsFacingRight())
@@ -49,14 +49,4 @@ public abstract class CharacterState : MonoBehaviour
     public virtual void Jump() { }
 }
 
-public enum characterState
-{
-    start,
-    idle,
-    run,
-    jump,
-    crouch,
-    hurt,
-    dead
-}
 

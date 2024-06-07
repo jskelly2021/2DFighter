@@ -15,7 +15,9 @@ public class IdleStateMoveAction : CharacterState
         body.velocity = new Vector2(character.GetWalkDirection() * character.speed, body.velocity.y);
 
         if (character.GetWalkDirection() != 0)
+        {
             character.SetCharacterState(characterState.run);
+        }
     }
 
     public override void Crouch()
