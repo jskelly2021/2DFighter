@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class PlayerInput : InputComponent
 {
-    private CharacterBase character;
-
-    private void Awake()
-    {
-        character = GetComponent<CharacterBase>();
-    }
-
     public void Update()
     {
         CheckMoveHorizontal();
