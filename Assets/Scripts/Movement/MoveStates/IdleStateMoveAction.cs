@@ -8,6 +8,7 @@ public class IdleStateMoveAction : CharacterState
         MoveHorizontal();
         Crouch();
         Jump();
+        Hurt();
     }
 
     public override void MoveHorizontal()
@@ -34,6 +35,14 @@ public class IdleStateMoveAction : CharacterState
         {
             body.velocity = new Vector2(body.velocity.x, character.jumpForce);
             character.SetCharacterState(characterState.jump);
+        }
+    }
+
+    public override void Hurt()
+    {
+        if (character.IsHurt())
+        {
+            character.SetCharacterState(characterState.hurt);
         }
     }
 }

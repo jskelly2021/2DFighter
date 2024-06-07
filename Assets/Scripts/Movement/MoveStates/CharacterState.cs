@@ -47,6 +47,7 @@ public abstract class CharacterState : MonoBehaviour
     public virtual void MoveHorizontal() { }
     public virtual void Crouch() { }
     public virtual void Jump() { }
+    public virtual void Hurt() { }
 }
 
 

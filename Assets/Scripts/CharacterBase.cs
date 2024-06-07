@@ -10,6 +10,7 @@ public class CharacterBase : MonoBehaviour
 
     public float speed = 5f;
     public float jumpForce = 5f;
+    public float stunTime = 0.5f;
 
     private float direction = 0f;
     private bool isJumping = false;
@@ -17,6 +18,8 @@ public class CharacterBase : MonoBehaviour
 
     private bool isFacingRight = true;
     private bool isGrounded = true;
+
+    private bool isHurt = false;
 
     private characterState state = characterState.idle;
 
@@ -37,6 +40,13 @@ public class CharacterBase : MonoBehaviour
 
     public void SetGrounded(bool input) { isGrounded = input; }
     public bool IsGrounded() { return isGrounded; }
+
+    public void SetHurt(bool input) { isHurt = input; }
+    public bool IsHurt() { return isHurt; }
+
+    public void SetStunTime(float input) { stunTime = input; }
+    public float GetStunTime() { return stunTime; }
+
 }
 
 public enum characterState

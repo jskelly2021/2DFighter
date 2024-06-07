@@ -7,6 +7,7 @@ public class PlayerInput : InputComponent
         CheckMoveHorizontal();
         CheckJump();
         CheckCrouch();
+        CheckHurt();
     }
 
     void CheckMoveHorizontal()
@@ -25,5 +26,11 @@ public class PlayerInput : InputComponent
     {
         bool isCrouching = Input.GetKey(KeyCode.S);
         character.SetCrouching(isCrouching);
+    }
+
+    void CheckHurt()
+    {
+        bool isHurt = Input.GetKey(KeyCode.J);
+        character.SetHurt(isHurt);
     }
 }
