@@ -11,6 +11,7 @@ public abstract class AnimationComponent : MonoBehaviour
     private void Awake()
     {
         character = GetComponent<CharacterBase>();
+        currentCharacterState = character.GetCharacterState();
     }
 
     private void Update()

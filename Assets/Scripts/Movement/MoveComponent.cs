@@ -19,8 +19,9 @@ public class MoveComponent : MonoBehaviour
     {
         character = GetComponent<CharacterBase>();
         InitStates();
-        DisableAllStates();
-        character.SetCharacterState(characterState.idle);
+
+        currentCharacterState = character.GetCharacterState();
+        ChangeMoveState();
     }
 
     private void Update()
@@ -38,6 +39,8 @@ public class MoveComponent : MonoBehaviour
         jump = character.gameObject.AddComponent<JumpStateMoveAction>();
         run = character.gameObject.AddComponent<RunStateMoveAction>();
         crouch = character.gameObject.AddComponent<CrouchStateMoveAction>();
+
+        DisableAllStates();
     }
 
     public void DisableAllStates()
