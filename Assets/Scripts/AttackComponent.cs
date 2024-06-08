@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class AttackComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private CharacterBase character;
+    private characterState currentCharacterState;
+    
+    public GameObject attackPoint;
+    public float attackRadius;
+
+    private void Awake()
     {
-        
+        character = gameObject.GetComponent<CharacterBase>();
+        currentCharacterState = character.GetCharacterState();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        currentCharacterState = character.GetCharacterState();
+    }
+
+    private void Attack()
+    {
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRadius, character.enemiesLayerMask); 
+
+        foreach (Collider2D enemy in enemies)
+        {
+            enemy.GetComponent<CharacterBase>().SetCharacterState(characterState.hurt);
+        }
     }
 }

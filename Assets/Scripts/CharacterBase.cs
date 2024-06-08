@@ -7,6 +7,7 @@ public class CharacterBase : MonoBehaviour
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
     public LayerMask groundLayerMask;
+    public LayerMask enemiesLayerMask;
 
     public float speed = 5f;
     public float jumpForce = 5f;
