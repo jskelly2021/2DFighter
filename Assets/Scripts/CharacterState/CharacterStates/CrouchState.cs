@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class CrouchState : BaseCharacterState
 {
-    public override void MoveHorizontal()
+    protected override void MoveHorizontal()
     {
         body.velocity = new Vector2(0, body.velocity.y);
     }
 
-    public override void Crouch()
+    protected override void Crouch()
     {
-        if (character.isCrouching)
+        if (character.IsCrouching)
         {
             character.SetCharacterState(characterState.crouch);
         }

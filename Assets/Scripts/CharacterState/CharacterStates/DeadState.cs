@@ -5,9 +5,9 @@ public class DeadState : BaseCharacterState
 {
 
     // Only for testing
-    public override void Jump()
+    protected override void Jump()
     {
-        if (character.isJumping)
+        if (character.IsJumping)
         {
             character.SetCharacterState(characterState.jump);
         }

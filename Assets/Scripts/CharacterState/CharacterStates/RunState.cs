@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class RunState : BaseCharacterState
 {
-    public override void MoveHorizontal()
+    protected override void MoveHorizontal()
     {
-        body.velocity = new Vector2(character.direction * character.speed, body.velocity.y);
+        body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
 
-        if (character.direction == 0)
+        if (character.Direction == 0)
             character.SetCharacterState(characterState.idle);
     }
 
-    public override void Jump()
+    protected override void Jump()
     {
-        if (character.isJumping && character.isGrounded)
+        if (character.IsJumping && character.IsGrounded)
         {
-            body.velocity = new Vector2(body.velocity.x, character.jumpForce);
+            body.velocity = new Vector2(body.velocity.x, character.JumpForce);
             character.SetCharacterState(characterState.jump);
         }
     }

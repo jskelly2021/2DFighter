@@ -1,5 +1,4 @@
 
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
@@ -9,19 +8,36 @@ public class CharacterBase : MonoBehaviour
     public LayerMask groundLayerMask;
     public LayerMask enemiesLayerMask;
 
-    public float speed { get; set; } = 5f;
-    public float jumpForce { get; set; } = 5f;
-    public float stunTime { get; set; } = 0.2f;
-    public float direction { get; set; } = 0f;
-    public bool isJumping { get; set; } = false;
-    public bool isCrouching { get; set; } = false;
-    public bool isFacingRight { get; set; } = true;
-    public bool isGrounded { get; set; } = true;
-    public bool isHurt { get; set; } = false;
-    public bool isDead { get; set; } = false;
-    public bool isAttacking { get; set; } = false;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float stunTime = 0.2f;
 
-    public characterState state { get; set; } = characterState.idle;
+    public float Speed 
+    { 
+        get { return speed; }
+        set { speed = value; } 
+    }
+    public float JumpForce
+    {
+        get { return jumpForce; }
+        set { jumpForce = value; }
+    }
+    public float StunTime
+    {
+        get { return stunTime; }
+        set { stunTime = value; }
+    }
+
+    public float Direction { get; set; } = 0f;
+    public bool IsJumping { get; set; } = false;
+    public bool IsCrouching { get; set; } = false;
+    public bool IsFacingRight { get; set; } = true;
+    public bool IsGrounded { get; set; } = true;
+    public bool IsHurt { get; set; } = false;
+    public bool IsDead { get; set; } = false;
+    public bool IsAttacking { get; set; } = false;
+
+    private characterState state = characterState.idle;
     public void SetCharacterState(characterState newState) => state = newState;
     public characterState GetCharacterState() => state;
 

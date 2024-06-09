@@ -30,39 +30,36 @@ public abstract class BaseCharacterState : MonoBehaviour
 
     protected void CheckFlipCharacter()
     {
-        if (body.velocity.x < 0 && character.isFacingRight)
+        if (body.velocity.x < 0 && character.IsFacingRight)
         {
-            character.isFacingRight = false;
+            character.IsFacingRight = false;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-        else if (body.velocity.x > 0 && !character.isFacingRight)
+        else if (body.velocity.x > 0 && !character.IsFacingRight)
         {
-            character.isFacingRight = true;
+            character.IsFacingRight = true;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
-
     protected virtual void IsGrounded()
     {
-        character.isGrounded = character.groundCheck.IsTouchingLayers(character.groundLayerMask);
+        character.IsGrounded = character.groundCheck.IsTouchingLayers(character.groundLayerMask);
     }
 
-    public virtual void MoveHorizontal() { }
-    public virtual void Crouch() { }
-    public virtual void Jump() { }
-    public virtual void Hurt() { }
-    public virtual void Dead() 
+    protected virtual void MoveHorizontal() { }
+    protected virtual void Crouch() { }
+    protected virtual void Jump() { }
+    protected virtual void Hurt() { }
+    protected virtual void Dead() 
     {
-        if (character.isDead)
+        if (character.IsDead)
         {
             character.SetCharacterState(characterState.dead);
         }
     }
-
-
-    public virtual void Attack() 
+    protected virtual void Attack() 
     {
-        if (character.isAttacking)
+        if (character.IsAttacking)
         {
             character.SetCharacterState(characterState.attack);
         }

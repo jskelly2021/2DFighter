@@ -3,36 +3,36 @@ using UnityEngine;
 
 public class IdleState : BaseCharacterState
 {
-    public override void MoveHorizontal()
+    protected override void MoveHorizontal()
     {
-        body.velocity = new Vector2(character.direction * character.speed, body.velocity.y);
+        body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
 
-        if (character.direction != 0)
+        if (character.Direction != 0)
         {
             character.SetCharacterState(characterState.run);
         }
     }
 
-    public override void Crouch()
+    protected override void Crouch()
     {
-        if (character.isCrouching)
+        if (character.IsCrouching)
         {
             character.SetCharacterState(characterState.crouch);
         }
     }
 
-    public override void Jump()
+    protected override void Jump()
     {
-        if (character.isJumping && character.isGrounded)
+        if (character.IsJumping && character.IsGrounded)
         {
-            body.velocity = new Vector2(body.velocity.x, character.jumpForce);
+            body.velocity = new Vector2(body.velocity.x, character.JumpForce);
             character.SetCharacterState(characterState.jump);
         }
     }
 
-    public override void Hurt()
+    protected override void Hurt()
     {
-        if (character.isHurt)
+        if (character.IsHurt)
         {
             character.SetCharacterState(characterState.hurt);
         }
