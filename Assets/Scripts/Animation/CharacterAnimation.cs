@@ -26,6 +26,9 @@ public class CharacterAnimation : AnimationComponent
             case characterState.dead:
                 animator.SetTrigger("dead");
                 break;
+            case characterState.attack:
+                animator.SetTrigger("attackFront");
+                break;
             default:
                 break;
         }

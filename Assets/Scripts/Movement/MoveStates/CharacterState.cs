@@ -25,6 +25,7 @@ public abstract class CharacterState : MonoBehaviour
         Jump();
         Hurt();
         Dead();
+        Attack();
     }
 
     protected void CheckFlipCharacter()
@@ -62,6 +63,15 @@ public abstract class CharacterState : MonoBehaviour
         if (character.IsDead())
         {
             character.SetCharacterState(characterState.dead);
+        }
+    }
+
+
+    public virtual void Attack() 
+    {
+        if (character.IsAttacking())
+        {
+            character.SetCharacterState(characterState.attack);
         }
     }
 }

@@ -83,7 +83,8 @@ public class MoveComponent : MonoBehaviour
                 dead.enabled = true;
                 break;
             case characterState.attack:
-                
+                attack.enabled = true;
+                break;
             default:
                 break;
         }
