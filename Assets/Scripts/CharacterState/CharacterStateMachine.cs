@@ -66,24 +66,35 @@ public class CharacterStateMachine : MonoBehaviour
             case CharacterState.Idle:
                 idle.enabled = true;
                 break;
+            
             case CharacterState.Run:
                 run.enabled = true;
                 break;
+            
             case CharacterState.Jump:
                 jump.enabled = true;
                 break;
+            
             case CharacterState.Crouch:
                 crouch.enabled = true;
                 break;
+            
             case CharacterState.Hurt:
                 hurt.enabled = true;
                 break;
+            
             case CharacterState.Dead:
                 dead.enabled = true;
                 break;
-            case CharacterState.Attack:
+
+            case CharacterState.NuetralAttack:
+            case CharacterState.FrontAttack:
+            case CharacterState.BackAttack:
+            case CharacterState.HighAttack:
+            case CharacterState.LowAttack:
                 attack.enabled = true;
                 break;
+
             default:
                 break;
         }

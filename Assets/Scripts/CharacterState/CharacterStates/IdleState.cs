@@ -37,4 +37,10 @@ public class IdleState : BaseCharacterState
             character.SetCharacterState(CharacterState.Hurt);
         }
     }
+
+    protected override void Attack()
+    {
+        if (character.IsAttacking)
+            character.SetCharacterState(CharacterState.NuetralAttack);
+    }
 }

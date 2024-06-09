@@ -28,32 +28,30 @@ public abstract class AttackComponent : MonoBehaviour
             return;
         }
 
-        if (currentCharacterState == CharacterState.Attack)
-        {
-            Attack();
-        }
+        Attack();
     }
 
     protected void Attack()
     {
         switch(currentCharacterState)
         {
-            case CharacterState.Idle:
+            case CharacterState.NuetralAttack:
                 NuetralAttack(); 
                 break;
 
-            case CharacterState.Run:
-                if (character.Direction > 0)
-                    FrontAttack();
-                else
-                    BackAttack();
+            case CharacterState.FrontAttack:
+                FrontAttack();
+                break;
+            
+            case CharacterState.BackAttack:
+                BackAttack();
                 break;
 
-            case CharacterState.Jump:
+            case CharacterState.HighAttack:
                 HighAttack();
                 break;
 
-            case CharacterState.Crouch:
+            case CharacterState.LowAttack:
                 LowAttack();
                 break;
 
