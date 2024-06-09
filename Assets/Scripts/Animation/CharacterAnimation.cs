@@ -20,25 +20,51 @@ public class CharacterAnimation : AnimationComponent
             case CharacterState.Idle:
                 animator.SetTrigger("idle");
                 break;
+
             case CharacterState.Run:
                 animator.SetTrigger("run");
                 break;
+
             case CharacterState.Jump:
                 animator.SetTrigger("jump");
                 break;
+
             case CharacterState.Crouch:
                 animator.SetTrigger("crouch");
                 break;
+
             case CharacterState.Hurt:
                 animator.SetTrigger("hurt");
                 break;
+
             case CharacterState.Dead:
                 animator.SetTrigger("dead");
                 break;
-            case CharacterState.Attack:
+
+
+            // Attacks
+            case CharacterState.NuetralAttack:
+                animator.SetTrigger("attackOverhead");
+                break;
+
+            case CharacterState.FrontAttack:
                 animator.SetTrigger("attackFront");
                 break;
+
+            case CharacterState.BackAttack:
+                animator.SetTrigger("attackBack");
+                break;
+
+            case CharacterState.HighAttack:
+                animator.SetTrigger("attackOverhead");
+                break;
+  
+            case CharacterState.LowAttack:
+                animator.SetTrigger("attackBack");
+                break;
+
             default:
+                animator.SetTrigger("idle");
                 break;
         }
 

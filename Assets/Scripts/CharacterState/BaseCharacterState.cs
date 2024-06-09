@@ -57,13 +57,7 @@ public abstract class BaseCharacterState : MonoBehaviour
             character.SetCharacterState(CharacterState.Dead);
         }
     }
-    protected virtual void Attack() 
-    {
-        if (character.IsAttacking)
-        {
-            character.SetCharacterState(CharacterState.Attack);
-        }
-    }
+    protected virtual void Attack() {}
 }
 
 

@@ -1,13 +1,13 @@
 
 using UnityEngine;
 
-public class AttackComponent : MonoBehaviour
+public abstract class AttackComponent : MonoBehaviour
 {
-    private CharacterBase character;
-    private CharacterState currentCharacterState;
+    protected CharacterBase character;
+    protected CharacterState currentCharacterState;
     
-    public GameObject attackPoint;
-    public float attackRadius = 1f;
+    [SerializeField] protected GameObject attackPoint;
+    [SerializeField] protected float attackRadius = 0.25f;
 
     private void Awake()
     {
@@ -17,24 +17,52 @@ public class AttackComponent : MonoBehaviour
 
     private void Update()
     {
-        if(currentCharacterState != character.GetCharacterState())
+        HandleAttack();
+    }
+
+    protected void HandleAttack()
+    {
+        if (currentCharacterState != character.GetCharacterState())
         {
             currentCharacterState = character.GetCharacterState();
-            CheckAttack();
+            return;
         }
+
+        Attack();
     }
 
-    private void CheckAttack()
+    protected void Attack()
     {
-        if (currentCharacterState == CharacterState.Attack)
+        switch(currentCharacterState)
         {
-            Attack();
+            case CharacterState.NuetralAttack:
+                NuetralAttack(); 
+                break;
+
+            case CharacterState.FrontAttack:
+                FrontAttack();
+                break;
+            
+            case CharacterState.BackAttack:
+                BackAttack();
+                break;
+
+            case CharacterState.HighAttack:
+                HighAttack();
+                break;
+
+            case CharacterState.LowAttack:
+                LowAttack();
+                break;
+
+            default:
+                break;
         }
     }
 
-    private void Attack()
+    protected void MeleeAttack()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRadius, character.enemiesLayerMask); 
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRadius, character.enemiesLayerMask);
 
         foreach (Collider2D enemy in enemies)
         {
@@ -45,9 +73,17 @@ public class AttackComponent : MonoBehaviour
         }
     }
 
+    protected virtual void NuetralAttack() { }
+    protected virtual void FrontAttack() { }
+    protected virtual void BackAttack() { }
+    protected virtual void HighAttack() { }
+    protected virtual void LowAttack() { }
+
+
     // For testing
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(attackPoint.transform.position, attackRadius);
+        if (attackPoint != null)
+            Gizmos.DrawWireSphere(attackPoint.transform.position, attackRadius);
     }
 }

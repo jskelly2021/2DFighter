@@ -19,4 +19,10 @@ public class CrouchState : BaseCharacterState
             character.SetCharacterState(CharacterState.Idle);
         }
     }
+
+    protected override void Attack()
+    {
+        if (character.IsAttacking)
+            character.SetCharacterState(CharacterState.LowAttack);
+    }
 }

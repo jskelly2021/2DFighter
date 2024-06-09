@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 1417872888}
   - component: {fileID: 1417872887}
   - component: {fileID: 1417872891}
-  - component: {fileID: 1417872892}
+  - component: {fileID: 1417872895}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -783,20 +783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   maxHealth: 5
---- !u!114 &1417872892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417872884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ded3ff4e01583c4abff885e6a66c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPoint: {fileID: 1099007473}
-  attackRadius: 0.25
 --- !u!95 &1417872893
 Animator:
   serializedVersion: 5
@@ -870,6 +856,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1417872895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417872884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283dcf249fb36db499b43c7da9f9f8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 1099007473}
+  attackRadius: 0.25
 --- !u!1 &1483105357
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,5 +7,11 @@ public enum CharacterState
     Crouch,
     Hurt,
     Dead,
-    Attack
+
+    // Attacks
+    NuetralAttack,
+    FrontAttack,
+    BackAttack,
+    LowAttack,
+    HighAttack
 }
