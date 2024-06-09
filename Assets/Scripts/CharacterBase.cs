@@ -1,4 +1,5 @@
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
@@ -10,7 +11,7 @@ public class CharacterBase : MonoBehaviour
 
     public float speed { get; set; } = 5f;
     public float jumpForce { get; set; } = 5f;
-    public float stunTime { get; set; } = 0.5f;
+    public float stunTime { get; set; } = 0.2f;
     public float direction { get; set; } = 0f;
     public bool isJumping { get; set; } = false;
     public bool isCrouching { get; set; } = false;

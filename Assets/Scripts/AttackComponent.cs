@@ -38,7 +38,7 @@ public class AttackComponent : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            enemy.GetComponent<CharacterBase>().SetCharacterState(characterState.hurt);
+            enemy.GetComponentInParent<CharacterBase>().SetCharacterState(characterState.hurt);
         }
     }
 }
