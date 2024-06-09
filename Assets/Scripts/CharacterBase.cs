@@ -37,19 +37,9 @@ public class CharacterBase : MonoBehaviour
     public bool IsDead { get; set; } = false;
     public bool IsAttacking { get; set; } = false;
 
-    private characterState state = characterState.idle;
-    public void SetCharacterState(characterState newState) => state = newState;
-    public characterState GetCharacterState() => state;
+    private CharacterState state = CharacterState.Idle;
+    public void SetCharacterState(CharacterState newState) => state = newState;
+    public CharacterState GetCharacterState() => state;
 
 }
 
-public enum characterState
-{
-    idle,
-    run,
-    jump,
-    crouch,
-    hurt,
-    dead,
-    attack
-}

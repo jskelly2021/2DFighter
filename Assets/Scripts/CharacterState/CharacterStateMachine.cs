@@ -13,7 +13,7 @@ public class CharacterStateMachine : MonoBehaviour
     private BaseCharacterState dead;
     private BaseCharacterState attack;
 
-    private characterState currentCharacterState;
+    private CharacterState currentCharacterState;
 
     private void Awake()
     {
@@ -63,25 +63,25 @@ public class CharacterStateMachine : MonoBehaviour
 
         switch (currentCharacterState)
         {
-            case characterState.idle:
+            case CharacterState.Idle:
                 idle.enabled = true;
                 break;
-            case characterState.run:
+            case CharacterState.Run:
                 run.enabled = true;
                 break;
-            case characterState.jump:
+            case CharacterState.Jump:
                 jump.enabled = true;
                 break;
-            case characterState.crouch:
+            case CharacterState.Crouch:
                 crouch.enabled = true;
                 break;
-            case characterState.hurt:
+            case CharacterState.Hurt:
                 hurt.enabled = true;
                 break;
-            case characterState.dead:
+            case CharacterState.Dead:
                 dead.enabled = true;
                 break;
-            case characterState.attack:
+            case CharacterState.Attack:
                 attack.enabled = true;
                 break;
             default:

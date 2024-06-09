@@ -13,9 +13,9 @@ public class HurtState : BaseCharacterState
     {
         yield return new WaitForSeconds(character.StunTime);
 
-        if (character.GetCharacterState() != characterState.dead)
+        if (character.GetCharacterState() != CharacterState.Dead)
         {
-            character.SetCharacterState(characterState.idle);
+            character.SetCharacterState(CharacterState.Idle);
         }
     }
 }

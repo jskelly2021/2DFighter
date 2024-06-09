@@ -7,7 +7,7 @@ public class HealthComponent : MonoBehaviour
     public int maxHealth = 5;
 
     private CharacterBase character;
-    private characterState currentCharacterState;
+    private CharacterState currentCharacterState;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class HealthComponent : MonoBehaviour
 
     private void CheckIfDamaged()
     {
-        if (character.GetCharacterState() == characterState.hurt)
+        if (character.GetCharacterState() == CharacterState.Hurt)
         {
             TakeDamage(1);
         }
@@ -41,7 +41,7 @@ public class HealthComponent : MonoBehaviour
         else
         {
             health = 0;
-            character.SetCharacterState(characterState.dead);
+            character.SetCharacterState(CharacterState.Dead);
         }
     }
 }

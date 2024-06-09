@@ -9,7 +9,7 @@ public class IdleState : BaseCharacterState
 
         if (character.Direction != 0)
         {
-            character.SetCharacterState(characterState.run);
+            character.SetCharacterState(CharacterState.Run);
         }
     }
 
@@ -17,7 +17,7 @@ public class IdleState : BaseCharacterState
     {
         if (character.IsCrouching)
         {
-            character.SetCharacterState(characterState.crouch);
+            character.SetCharacterState(CharacterState.Crouch);
         }
     }
 
@@ -26,7 +26,7 @@ public class IdleState : BaseCharacterState
         if (character.IsJumping && character.IsGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, character.JumpForce);
-            character.SetCharacterState(characterState.jump);
+            character.SetCharacterState(CharacterState.Jump);
         }
     }
 
@@ -34,7 +34,7 @@ public class IdleState : BaseCharacterState
     {
         if (character.IsHurt)
         {
-            character.SetCharacterState(characterState.hurt);
+            character.SetCharacterState(CharacterState.Hurt);
         }
     }
 }

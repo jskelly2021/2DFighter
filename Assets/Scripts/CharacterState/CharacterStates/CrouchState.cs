@@ -12,11 +12,11 @@ public class CrouchState : BaseCharacterState
     {
         if (character.IsCrouching)
         {
-            character.SetCharacterState(characterState.crouch);
+            character.SetCharacterState(CharacterState.Crouch);
         }
         else
         {
-            character.SetCharacterState(characterState.idle);
+            character.SetCharacterState(CharacterState.Idle);
         }
     }
 }

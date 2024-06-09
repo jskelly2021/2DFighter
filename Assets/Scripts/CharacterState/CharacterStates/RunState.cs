@@ -8,7 +8,7 @@ public class RunState : BaseCharacterState
         body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
 
         if (character.Direction == 0)
-            character.SetCharacterState(characterState.idle);
+            character.SetCharacterState(CharacterState.Idle);
     }
 
     protected override void Jump()
@@ -16,7 +16,7 @@ public class RunState : BaseCharacterState
         if (character.IsJumping && character.IsGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, character.JumpForce);
-            character.SetCharacterState(characterState.jump);
+            character.SetCharacterState(CharacterState.Jump);
         }
     }
 }

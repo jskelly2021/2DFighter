@@ -4,7 +4,7 @@ using UnityEngine;
 public class AttackComponent : MonoBehaviour
 {
     private CharacterBase character;
-    private characterState currentCharacterState;
+    private CharacterState currentCharacterState;
     
     public GameObject attackPoint;
     public float attackRadius;
@@ -26,7 +26,7 @@ public class AttackComponent : MonoBehaviour
 
     private void CheckAttack()
     {
-        if (currentCharacterState == characterState.attack)
+        if (currentCharacterState == CharacterState.Attack)
         {
             Attack();
         }
@@ -38,7 +38,7 @@ public class AttackComponent : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            enemy.GetComponentInParent<CharacterBase>().SetCharacterState(characterState.hurt);
+            enemy.GetComponentInParent<CharacterBase>().SetCharacterState(CharacterState.Hurt);
         }
     }
 }

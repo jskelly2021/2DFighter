@@ -9,7 +9,7 @@ public class DeadState : BaseCharacterState
     {
         if (character.IsJumping)
         {
-            character.SetCharacterState(characterState.jump);
+            character.SetCharacterState(CharacterState.Jump);
         }
     }
 }

@@ -6,7 +6,7 @@ public abstract class AnimationComponent : MonoBehaviour
     [SerializeField] protected Animator animator;
  
     protected CharacterBase character;
-    protected characterState currentCharacterState;
+    protected CharacterState currentCharacterState;
 
     private void Awake()
     {

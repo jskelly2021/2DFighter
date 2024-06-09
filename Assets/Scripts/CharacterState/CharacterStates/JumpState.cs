@@ -13,7 +13,7 @@ public class JumpState : BaseCharacterState
         if (character.groundCheck.IsTouchingLayers(character.groundLayerMask))
         {
             character.IsGrounded = true;
-            character.SetCharacterState(characterState.idle);
+            character.SetCharacterState(CharacterState.Idle);
         }
         else
         {
