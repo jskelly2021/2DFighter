@@ -40,6 +40,4 @@ public class CharacterBase : MonoBehaviour
     private CharacterState state = CharacterState.Idle;
     public void SetCharacterState(CharacterState newState) => state = newState;
     public CharacterState GetCharacterState() => state;
-
 }
-

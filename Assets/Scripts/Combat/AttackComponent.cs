@@ -7,7 +7,7 @@ public class AttackComponent : MonoBehaviour
     private CharacterState currentCharacterState;
     
     public GameObject attackPoint;
-    public float attackRadius;
+    public float attackRadius = 1f;
 
     private void Awake()
     {
@@ -38,7 +38,16 @@ public class AttackComponent : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            enemy.GetComponentInParent<CharacterBase>().SetCharacterState(CharacterState.Hurt);
+            CharacterBase enemyBase = enemy.GetComponentInParent<CharacterBase>();
+
+            if (enemyBase != null)
+                enemyBase.SetCharacterState(CharacterState.Hurt);
         }
+    }
+
+    // For testing
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(attackPoint.transform.position, attackRadius);
     }
 }

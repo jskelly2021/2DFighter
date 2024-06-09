@@ -555,7 +555,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099007473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0.419, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -766,6 +766,9 @@ MonoBehaviour:
   enemiesLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  speed: 5
+  jumpForce: 5
+  stunTime: 0.2
 --- !u!114 &1417872891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,7 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1099007473}
-  attackRadius: 1
+  attackRadius: 0.25
 --- !u!95 &1417872893
 Animator:
   serializedVersion: 5
@@ -1454,6 +1457,9 @@ MonoBehaviour:
   enemiesLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  speed: 5
+  jumpForce: 5
+  stunTime: 0.2
 --- !u!50 &1997002723
 Rigidbody2D:
   serializedVersion: 4

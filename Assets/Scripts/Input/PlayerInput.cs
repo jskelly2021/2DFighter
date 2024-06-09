@@ -30,12 +30,13 @@ public class PlayerInput : InputComponent
         character.IsCrouching = isCrouching;
     }
 
+    // For Testing
     private void CheckHurt()
     {
         bool isHurt = Input.GetKey(KeyCode.J);
         character.IsHurt = isHurt;  
     }
-
+    // For Testing
     private void CheckDead()
     {
         bool isDead = Input.GetKey(KeyCode.K);
