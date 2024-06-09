@@ -44,14 +44,7 @@ public abstract class CharacterState : MonoBehaviour
 
     protected virtual void IsGrounded()
     {
-        if (character.groundCheck.IsTouchingLayers(character.groundLayerMask))
-        {
-            character.SetGrounded(true);
-        }
-        else
-        {
-            character.SetGrounded(false);
-        }
+        character.SetGrounded(character.groundCheck.IsTouchingLayers(character.groundLayerMask));
     }
 
     public virtual void MoveHorizontal() { }
