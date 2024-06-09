@@ -9,6 +9,7 @@ public class PlayerInput : InputComponent
         CheckCrouch();
         CheckHurt();
         CheckDead();
+        CheckAttack();
     }
 
     void CheckMoveHorizontal()
@@ -39,6 +40,12 @@ public class PlayerInput : InputComponent
     {
         bool isDead = Input.GetKey(KeyCode.K);
         character.SetDead(isDead);
+    }
+
+    void CheckAttack()
+    {
+        bool isAttacking = Input.GetKey(KeyCode.F);
+        character.SetAttack(isAttacking);
     }
 
 }

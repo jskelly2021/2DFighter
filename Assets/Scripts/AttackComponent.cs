@@ -17,7 +17,11 @@ public class AttackComponent : MonoBehaviour
 
     private void Update()
     {
-        currentCharacterState = character.GetCharacterState();
+        if(currentCharacterState != character.GetCharacterState())
+        {
+            currentCharacterState = character.GetCharacterState();
+            Attack();
+        }
     }
 
     private void Attack()

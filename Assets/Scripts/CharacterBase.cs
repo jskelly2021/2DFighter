@@ -23,6 +23,8 @@ public class CharacterBase : MonoBehaviour
     private bool isHurt = false;
     private bool isDead = false;
 
+    private bool isAttacking = false;
+
     private characterState state = characterState.idle;
 
     public void SetCharacterState(characterState newState) { this.state = newState; }
@@ -51,6 +53,9 @@ public class CharacterBase : MonoBehaviour
 
     public void SetDead(bool input) { isDead = input; }
     public bool IsDead() { return isDead; }
+
+    public void SetAttack(bool input) { isAttacking = input; }
+    public bool IsAttacking() { return isAttacking; }
 }
 
 public enum characterState
@@ -60,5 +65,6 @@ public enum characterState
     jump,
     crouch,
     hurt,
-    dead
+    dead,
+    attack
 }

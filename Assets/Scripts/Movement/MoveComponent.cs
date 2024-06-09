@@ -12,6 +12,7 @@ public class MoveComponent : MonoBehaviour
     private CharacterState crouch;
     private CharacterState hurt;
     private CharacterState dead;
+    private CharacterState attack;
 
     private characterState currentCharacterState;
 
@@ -41,6 +42,7 @@ public class MoveComponent : MonoBehaviour
         crouch = character.gameObject.AddComponent<CrouchStateMoveAction>();
         hurt = character.gameObject.AddComponent<HurtStateMoveAction>();
         dead = character.gameObject.AddComponent<DeadStateMoveAction>();
+        attack = character.gameObject.AddComponent<AttackStateMoveAction>();
 
         DisableAllStates();
     }
@@ -53,6 +55,7 @@ public class MoveComponent : MonoBehaviour
         crouch.enabled = false;
         hurt.enabled = false;
         dead.enabled = false;
+        attack.enabled = false;
     }
 
     private void ChangeMoveState()
@@ -79,6 +82,8 @@ public class MoveComponent : MonoBehaviour
             case characterState.dead:
                 dead.enabled = true;
                 break;
+            case characterState.attack:
+                
             default:
                 break;
         }
