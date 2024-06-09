@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class JumpStateMoveAction : CharacterState
+public class JumpState : BaseCharacterState
 {
     public override void MoveHorizontal()
     {

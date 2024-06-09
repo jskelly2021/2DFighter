@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public abstract class CharacterState : MonoBehaviour
+public abstract class BaseCharacterState : MonoBehaviour
 {
     protected Rigidbody2D body;
     protected CharacterBase character;

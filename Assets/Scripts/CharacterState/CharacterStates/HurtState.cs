@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HurtStateMoveAction : CharacterState
+public class HurtState : BaseCharacterState
 {
     private void OnEnable()
     {

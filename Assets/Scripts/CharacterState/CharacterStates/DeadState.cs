@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class DeadStateMoveAction : CharacterState
+public class DeadState : BaseCharacterState
 {
 
     // Only for testing

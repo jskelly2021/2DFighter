@@ -1,18 +1,17 @@
 
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class MoveComponent : MonoBehaviour
+public class CharacterStateMachine : MonoBehaviour
 {
     private CharacterBase character;
 
-    private CharacterState idle;
-    private CharacterState run;
-    private CharacterState jump;
-    private CharacterState crouch;
-    private CharacterState hurt;
-    private CharacterState dead;
-    private CharacterState attack;
+    private BaseCharacterState idle;
+    private BaseCharacterState run;
+    private BaseCharacterState jump;
+    private BaseCharacterState crouch;
+    private BaseCharacterState hurt;
+    private BaseCharacterState dead;
+    private BaseCharacterState attack;
 
     private characterState currentCharacterState;
 
@@ -36,13 +35,13 @@ public class MoveComponent : MonoBehaviour
 
     private void InitStates()
     {
-        idle = character.gameObject.AddComponent<IdleStateMoveAction>();
-        jump = character.gameObject.AddComponent<JumpStateMoveAction>();
-        run = character.gameObject.AddComponent<RunStateMoveAction>();
-        crouch = character.gameObject.AddComponent<CrouchStateMoveAction>();
-        hurt = character.gameObject.AddComponent<HurtStateMoveAction>();
-        dead = character.gameObject.AddComponent<DeadStateMoveAction>();
-        attack = character.gameObject.AddComponent<AttackStateMoveAction>();
+        idle = character.gameObject.AddComponent<IdleState>();
+        jump = character.gameObject.AddComponent<JumpState>();
+        run = character.gameObject.AddComponent<RunState>();
+        crouch = character.gameObject.AddComponent<CrouchState>();
+        hurt = character.gameObject.AddComponent<HurtState>();
+        dead = character.gameObject.AddComponent<DeadState>();
+        attack = character.gameObject.AddComponent<AttackState>();
 
         DisableAllStates();
     }

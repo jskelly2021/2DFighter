@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class CrouchStateMoveAction : CharacterState
+public class CrouchState : BaseCharacterState
 {
     public override void MoveHorizontal()
     {

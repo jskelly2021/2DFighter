@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class RunStateMoveAction : CharacterState
+public class RunState : BaseCharacterState
 {
     public override void MoveHorizontal()
     {

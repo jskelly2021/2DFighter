@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class IdleStateMoveAction : CharacterState
+public class IdleState : BaseCharacterState
 {
     public override void MoveHorizontal()
     {
