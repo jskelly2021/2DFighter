@@ -9,4 +9,11 @@ public abstract class InputComponent : MonoBehaviour
     {
         character = GetComponent<CharacterBase>();
     }
+
+    private void Update()
+    {
+        HandleInput();
+    }
+
+    protected abstract void HandleInput();
 }

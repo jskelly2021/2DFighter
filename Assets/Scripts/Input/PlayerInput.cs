@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerInput : InputComponent
 {
-    public void Update()
+    protected override void HandleInput()
     {
         CheckMoveHorizontal();
         CheckJump();
@@ -12,37 +12,37 @@ public class PlayerInput : InputComponent
         CheckAttack();
     }
 
-    void CheckMoveHorizontal()
+    private void CheckMoveHorizontal()
     {
         float xInput = Input.GetAxis("Horizontal");   
         character.SetWalkDirection(xInput);
     }
 
-    void CheckJump()
+    private void CheckJump()
     {
         bool isJumping = (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W));
         character.SetJumping(isJumping);
     }
 
-    void CheckCrouch()
+    private void CheckCrouch()
     {
         bool isCrouching = Input.GetKey(KeyCode.S);
         character.SetCrouching(isCrouching);
     }
 
-    void CheckHurt()
+    private void CheckHurt()
     {
         bool isHurt = Input.GetKey(KeyCode.J);
         character.SetHurt(isHurt);
     }
 
-    void CheckDead()
+    private void CheckDead()
     {
         bool isDead = Input.GetKey(KeyCode.K);
         character.SetDead(isDead);
     }
 
-    void CheckAttack()
+    private void CheckAttack()
     {
         bool isAttacking = Input.GetKey(KeyCode.F);
         character.SetAttack(isAttacking);
