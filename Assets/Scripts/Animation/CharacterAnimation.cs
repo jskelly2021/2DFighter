@@ -4,7 +4,16 @@ using UnityEngine.TextCore.Text;
 
 public class CharacterAnimation : AnimationComponent
 {
-    public override void Play()
+    protected override void HandleAnimations()
+    {
+        if (character.GetCharacterState() != currentCharacterState)
+        {
+            currentCharacterState = character.GetCharacterState();
+            Play();
+        }
+    }
+
+    protected override void Play()
     {
         switch (currentCharacterState)
         {

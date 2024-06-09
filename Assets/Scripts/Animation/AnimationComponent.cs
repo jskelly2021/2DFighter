@@ -16,12 +16,10 @@ public abstract class AnimationComponent : MonoBehaviour
 
     private void Update()
     {
-        if (character.GetCharacterState() != currentCharacterState)
-        {
-            currentCharacterState = character.GetCharacterState();
-            Play();
-        }
+        HandleAnimations();
     }
 
-    public abstract void Play();
+    protected abstract void HandleAnimations();
+
+    protected abstract void Play();
 }
