@@ -7,7 +7,7 @@ public abstract class AttackComponent : MonoBehaviour
     protected CharacterState currentCharacterState;
     
     [SerializeField] protected GameObject attackPoint;
-    [SerializeField] protected float attackRadius = 1f;
+    [SerializeField] protected float attackRadius = 0.25f;
 
     private void Awake()
     {

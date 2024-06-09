@@ -19,4 +19,15 @@ public class RunState : BaseCharacterState
             character.SetCharacterState(CharacterState.Jump);
         }
     }
+
+    protected override void Attack()
+    {
+        if (!character.IsAttacking)
+            return;
+
+        if (character.Direction > 0)
+            character.SetCharacterState(CharacterState.FrontAttack);
+        else
+            character.SetCharacterState(CharacterState.BackAttack);
+    }
 }

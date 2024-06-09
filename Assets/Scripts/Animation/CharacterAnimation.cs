@@ -41,9 +41,10 @@ public class CharacterAnimation : AnimationComponent
                 animator.SetTrigger("dead");
                 break;
 
+
             // Attacks
             case CharacterState.NuetralAttack:
-                animator.SetTrigger("overheadAttack");
+                animator.SetTrigger("attackOverhead");
                 break;
 
             case CharacterState.FrontAttack:
