@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class CharacterState : MonoBehaviour
+public enum CharacterState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    Idle,
+    Run,
+    Jump,
+    Crouch,
+    Hurt,
+    Dead,
+    Attack
 }
