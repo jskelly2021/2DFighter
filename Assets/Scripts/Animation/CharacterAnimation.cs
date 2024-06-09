@@ -39,6 +39,7 @@ public class CharacterAnimation : AnimationComponent
                 animator.SetTrigger("attackFront");
                 break;
             default:
+                animator.SetTrigger("idle");
                 break;
         }
 
