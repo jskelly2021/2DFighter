@@ -1,5 +1,4 @@
 
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
@@ -27,35 +26,35 @@ public class CharacterBase : MonoBehaviour
 
     private characterState state = characterState.idle;
 
-    public void SetCharacterState(characterState newState) { this.state = newState; }
-    public characterState GetCharacterState() { return state; }
+    public void SetCharacterState(characterState newState) => state = newState;
+    public characterState GetCharacterState() => state;
 
-    public void SetWalkDirection (float input) { direction = input; }
-    public float GetWalkDirection() { return direction; }
+    public void SetWalkDirection(float input) => direction = input;
+    public float GetWalkDirection() => direction;
 
-    public void SetJumping(bool input) { isJumping = input; }
-    public bool IsJumping() { return isJumping; }
+    public void SetJumping(bool input) => isJumping = input;
+    public bool IsJumping() => isJumping;
 
-    public void SetCrouching(bool input) { isCrouching = input; }
-    public bool IsCrouching() { return isCrouching; }
+    public void SetCrouching(bool input) => isCrouching = input;
+    public bool IsCrouching() => isCrouching;
 
-    public void SetFacingRight(bool input) { isFacingRight = input; }
-    public bool IsFacingRight() { return isFacingRight; }
+    public void SetFacingRight(bool input) => isFacingRight = input;
+    public bool IsFacingRight() => isFacingRight;
 
-    public void SetGrounded(bool input) { isGrounded = input; }
-    public bool IsGrounded() { return isGrounded; }
+    public void SetGrounded(bool input) => isGrounded = input;
+    public bool IsGrounded() => isGrounded;
 
-    public void SetHurt(bool input) { isHurt = input; }
-    public bool IsHurt() { return isHurt; }
+    public void SetHurt(bool input) => isHurt = input;
+    public bool IsHurt() => isHurt;
 
-    public void SetStunTime(float input) { stunTime = input; }
-    public float GetStunTime() { return stunTime; }
+    public void SetStunTime(float input) => stunTime = input;
+    public float GetStunTime() => stunTime;
 
-    public void SetDead(bool input) { isDead = input; }
-    public bool IsDead() { return isDead; }
+    public void SetDead(bool input) => isDead = input;
+    public bool IsDead() => isDead;
 
-    public void SetAttack(bool input) { isAttacking = input; }
-    public bool IsAttacking() { return isAttacking; }
+    public void SetAttack(bool input) => isAttacking = input;
+    public bool IsAttacking() => isAttacking;
 }
 
 public enum characterState
