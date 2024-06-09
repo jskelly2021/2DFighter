@@ -34,7 +34,6 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Damage Taken");
         if (health > damage)
         {
             health = health - damage;
