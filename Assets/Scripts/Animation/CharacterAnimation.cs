@@ -56,7 +56,11 @@ public class CharacterAnimation : AnimationComponent
                 break;
 
             case CharacterState.HighAttack:
+                animator.SetTrigger("attackOverhead");
+                break;
+  
             case CharacterState.LowAttack:
+                animator.SetTrigger("attackBack");
                 break;
 
             default:

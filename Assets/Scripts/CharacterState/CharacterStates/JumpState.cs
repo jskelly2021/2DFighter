@@ -21,4 +21,10 @@ public class JumpState : BaseCharacterState
         }
     }
 
+    protected override void Attack()
+    {
+        if (character.IsAttacking)
+            character.SetCharacterState(CharacterState.HighAttack);
+    }
+
 }
