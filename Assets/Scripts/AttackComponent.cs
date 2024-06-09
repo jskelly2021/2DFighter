@@ -38,10 +38,7 @@ public class AttackComponent : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            Debug.Log("Attacking Enemy: " + enemy.name);
             enemy.GetComponent<CharacterBase>().SetCharacterState(characterState.hurt);
-            Debug.Log("Successful Attack on: " + enemy.name);
-
         }
     }
 }
