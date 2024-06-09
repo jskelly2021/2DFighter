@@ -4,29 +4,38 @@ using UnityEngine.TextCore.Text;
 
 public class CharacterAnimation : AnimationComponent
 {
-    public override void Play()
+    protected override void HandleAnimations()
+    {
+        if (character.GetCharacterState() != currentCharacterState)
+        {
+            currentCharacterState = character.GetCharacterState();
+            Play();
+        }
+    }
+
+    protected override void Play()
     {
         switch (currentCharacterState)
         {
-            case characterState.idle:
+            case CharacterState.Idle:
                 animator.SetTrigger("idle");
                 break;
-            case characterState.run:
+            case CharacterState.Run:
                 animator.SetTrigger("run");
                 break;
-            case characterState.jump:
+            case CharacterState.Jump:
                 animator.SetTrigger("jump");
                 break;
-            case characterState.crouch:
+            case CharacterState.Crouch:
                 animator.SetTrigger("crouch");
                 break;
-            case characterState.hurt:
+            case CharacterState.Hurt:
                 animator.SetTrigger("hurt");
                 break;
-            case characterState.dead:
+            case CharacterState.Dead:
                 animator.SetTrigger("dead");
                 break;
-            case characterState.attack:
+            case CharacterState.Attack:
                 animator.SetTrigger("attackFront");
                 break;
             default:

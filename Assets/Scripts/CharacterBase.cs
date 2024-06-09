@@ -1,5 +1,4 @@
 
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
@@ -9,62 +8,36 @@ public class CharacterBase : MonoBehaviour
     public LayerMask groundLayerMask;
     public LayerMask enemiesLayerMask;
 
-    public float speed = 5f;
-    public float jumpForce = 5f;
-    public float stunTime = 0.5f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float stunTime = 0.2f;
 
-    private float direction = 0f;
-    private bool isJumping = false;
-    private bool isCrouching = false;
+    public float Speed 
+    { 
+        get { return speed; }
+        set { speed = value; } 
+    }
+    public float JumpForce
+    {
+        get { return jumpForce; }
+        set { jumpForce = value; }
+    }
+    public float StunTime
+    {
+        get { return stunTime; }
+        set { stunTime = value; }
+    }
 
-    private bool isFacingRight = true;
-    private bool isGrounded = true;
+    public float Direction { get; set; } = 0f;
+    public bool IsJumping { get; set; } = false;
+    public bool IsCrouching { get; set; } = false;
+    public bool IsFacingRight { get; set; } = true;
+    public bool IsGrounded { get; set; } = true;
+    public bool IsHurt { get; set; } = false;
+    public bool IsDead { get; set; } = false;
+    public bool IsAttacking { get; set; } = false;
 
-    private bool isHurt = false;
-    private bool isDead = false;
-
-    private bool isAttacking = false;
-
-    private characterState state = characterState.idle;
-
-    public void SetCharacterState(characterState newState) { this.state = newState; }
-    public characterState GetCharacterState() { return state; }
-
-    public void SetWalkDirection (float input) { direction = input; }
-    public float GetWalkDirection() { return direction; }
-
-    public void SetJumping(bool input) { isJumping = input; }
-    public bool IsJumping() { return isJumping; }
-
-    public void SetCrouching(bool input) { isCrouching = input; }
-    public bool IsCrouching() { return isCrouching; }
-
-    public void SetFacingRight(bool input) { isFacingRight = input; }
-    public bool IsFacingRight() { return isFacingRight; }
-
-    public void SetGrounded(bool input) { isGrounded = input; }
-    public bool IsGrounded() { return isGrounded; }
-
-    public void SetHurt(bool input) { isHurt = input; }
-    public bool IsHurt() { return isHurt; }
-
-    public void SetStunTime(float input) { stunTime = input; }
-    public float GetStunTime() { return stunTime; }
-
-    public void SetDead(bool input) { isDead = input; }
-    public bool IsDead() { return isDead; }
-
-    public void SetAttack(bool input) { isAttacking = input; }
-    public bool IsAttacking() { return isAttacking; }
-}
-
-public enum characterState
-{
-    idle,
-    run,
-    jump,
-    crouch,
-    hurt,
-    dead,
-    attack
+    private CharacterState state = CharacterState.Idle;
+    public void SetCharacterState(CharacterState newState) => state = newState;
+    public CharacterState GetCharacterState() => state;
 }

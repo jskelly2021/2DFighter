@@ -6,7 +6,7 @@ public abstract class AnimationComponent : MonoBehaviour
     [SerializeField] protected Animator animator;
  
     protected CharacterBase character;
-    protected characterState currentCharacterState;
+    protected CharacterState currentCharacterState;
 
     private void Awake()
     {
@@ -16,12 +16,10 @@ public abstract class AnimationComponent : MonoBehaviour
 
     private void Update()
     {
-        if (character.GetCharacterState() != currentCharacterState)
-        {
-            currentCharacterState = character.GetCharacterState();
-            Play();
-        }
+        HandleAnimations();
     }
 
-    public abstract void Play();
+    protected abstract void HandleAnimations();
+
+    protected abstract void Play();
 }
