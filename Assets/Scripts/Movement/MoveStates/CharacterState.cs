@@ -30,21 +30,21 @@ public abstract class CharacterState : MonoBehaviour
 
     protected void CheckFlipCharacter()
     {
-        if (body.velocity.x < 0 && character.IsFacingRight())
+        if (body.velocity.x < 0 && character.isFacingRight)
         {
-            character.SetFacingRight(false);
+            character.isFacingRight = false;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-        else if (body.velocity.x > 0 && !character.IsFacingRight())
+        else if (body.velocity.x > 0 && !character.isFacingRight)
         {
-            character.SetFacingRight(true);
+            character.isFacingRight = true;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
 
     protected virtual void IsGrounded()
     {
-        character.SetGrounded(character.groundCheck.IsTouchingLayers(character.groundLayerMask));
+        character.isGrounded = character.groundCheck.IsTouchingLayers(character.groundLayerMask);
     }
 
     public virtual void MoveHorizontal() { }
@@ -53,7 +53,7 @@ public abstract class CharacterState : MonoBehaviour
     public virtual void Hurt() { }
     public virtual void Dead() 
     {
-        if (character.IsDead())
+        if (character.isDead)
         {
             character.SetCharacterState(characterState.dead);
         }
@@ -62,7 +62,7 @@ public abstract class CharacterState : MonoBehaviour
 
     public virtual void Attack() 
     {
-        if (character.IsAttacking())
+        if (character.isAttacking)
         {
             character.SetCharacterState(characterState.attack);
         }

@@ -36,7 +36,7 @@ public class HealthComponent : MonoBehaviour
     {
         if (health > damage)
         {
-            health = health - damage;
+            health -= damage;
         }
         else
         {

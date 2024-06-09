@@ -15,37 +15,37 @@ public class PlayerInput : InputComponent
     private void CheckMoveHorizontal()
     {
         float xInput = Input.GetAxis("Horizontal");   
-        character.SetWalkDirection(xInput);
+        character.direction = xInput;
     }
 
     private void CheckJump()
     {
         bool isJumping = (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W));
-        character.SetJumping(isJumping);
+        character.isJumping = isJumping;
     }
 
     private void CheckCrouch()
     {
         bool isCrouching = Input.GetKey(KeyCode.S);
-        character.SetCrouching(isCrouching);
+        character.isCrouching = isCrouching;
     }
 
     private void CheckHurt()
     {
         bool isHurt = Input.GetKey(KeyCode.J);
-        character.SetHurt(isHurt);
+        character.isHurt = isHurt;  
     }
 
     private void CheckDead()
     {
         bool isDead = Input.GetKey(KeyCode.K);
-        character.SetDead(isDead);
+        character.isDead = isDead;
     }
 
     private void CheckAttack()
     {
         bool isAttacking = Input.GetKey(KeyCode.F);
-        character.SetAttack(isAttacking);
+        character.isAttacking = isAttacking;
     }
 
 }

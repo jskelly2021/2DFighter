@@ -11,7 +11,7 @@ public class HurtStateMoveAction : CharacterState
 
     IEnumerator StunTimer()
     {
-        yield return new WaitForSeconds(character.GetStunTime());
+        yield return new WaitForSeconds(character.stunTime);
 
         if (character.GetCharacterState() != characterState.dead)
         {
