@@ -12,7 +12,7 @@ public class HurtState : BaseCharacterState
     IEnumerator StunTimer()
     {
         yield return new WaitForSeconds(character.StunTime);
-
+        
         if (character.GetCharacterState() != CharacterState.Dead)
         {
             character.SetCharacterState(CharacterState.Idle);

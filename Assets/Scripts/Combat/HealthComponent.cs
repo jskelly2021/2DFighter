@@ -34,13 +34,10 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (health > damage)
+        health -= damage;
+
+        if(health <= 0)
         {
-            health -= damage;
-        }
-        else
-        {
-            health = 0;
             character.SetCharacterState(CharacterState.Dead);
         }
     }
