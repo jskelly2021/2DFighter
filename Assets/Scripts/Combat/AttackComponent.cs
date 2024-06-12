@@ -60,18 +60,24 @@ public abstract class AttackComponent : MonoBehaviour
 
     protected void MeleeAttack()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRadius, character.enemiesLayerMask);
+        Collider2D[] opponents = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRadius, character.enemiesLayerMask);
 
-        foreach (Collider2D enemy in enemies)
+        foreach (Collider2D opponent in opponents)
         {
-            CharacterBase enemyBase = enemy.GetComponentInParent<CharacterBase>();
+            HealthComponent opponentHealth = opponent.GetComponentInParent<HealthComponent>();
 
-            if (enemyBase == null)
+            if (opponentHealth == null)
                 continue;
-            if (enemyBase == character)
+            if (opponentHealth == gameObject.GetComponent<HealthComponent>())
                 continue;
 
-            enemyBase.SetCharacterState(CharacterState.Hurt);
+            opponentHealth.TakeDamage(1);
+
+            Vector2 knockBackDirection = new Vector2(-1, 1);
+            if (character.IsFacingRight)
+                knockBackDirection = new Vector2(1, 1);
+
+            opponentHealth.KnockBack(knockBackDirection, character.KnockBackForce);
         }
     }
 
