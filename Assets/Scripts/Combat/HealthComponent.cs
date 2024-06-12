@@ -30,6 +30,9 @@ public class HealthComponent : MonoBehaviour
 
     public void KnockBack(Vector2 hitDirection, float knockBackForce)
     {
+        if (character.GetCharacterState() == CharacterState.Block)
+            return;
+
         character.body.velocity = new Vector2(hitDirection.x * knockBackForce, hitDirection.y * knockBackForce);
     }
 }
