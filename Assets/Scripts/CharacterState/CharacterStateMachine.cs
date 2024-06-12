@@ -12,6 +12,7 @@ public class CharacterStateMachine : MonoBehaviour
     private BaseCharacterState hurt;
     private BaseCharacterState dead;
     private BaseCharacterState attack;
+    private BaseCharacterState block;
 
     private CharacterState currentCharacterState;
 
@@ -42,6 +43,7 @@ public class CharacterStateMachine : MonoBehaviour
         hurt = character.gameObject.AddComponent<HurtState>();
         dead = character.gameObject.AddComponent<DeadState>();
         attack = character.gameObject.AddComponent<AttackState>();
+        block = character.gameObject.AddComponent<BlockState>();
 
         DisableAllStates();
     }
@@ -55,6 +57,7 @@ public class CharacterStateMachine : MonoBehaviour
         hurt.enabled = false;
         dead.enabled = false;
         attack.enabled = false;
+        block.enabled = false;
     }
 
     private void ChangeMoveState()
@@ -85,6 +88,10 @@ public class CharacterStateMachine : MonoBehaviour
             
             case CharacterState.Dead:
                 dead.enabled = true;
+                break;
+
+            case CharacterState.Block:
+                block.enabled = true;
                 break;
 
             case CharacterState.NuetralAttack:
