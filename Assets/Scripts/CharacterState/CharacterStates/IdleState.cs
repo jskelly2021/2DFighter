@@ -30,14 +30,6 @@ public class IdleState : BaseCharacterState
         }
     }
 
-    protected override void Hurt()
-    {
-        if (character.IsHurt)
-        {
-            character.SetCharacterState(CharacterState.Hurt);
-        }
-    }
-
     protected override void Attack()
     {
         if (character.IsAttacking)

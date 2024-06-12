@@ -33,7 +33,6 @@ public class CharacterBase : MonoBehaviour
     public bool IsCrouching { get; set; } = false;
     public bool IsFacingRight { get; set; } = true;
     public bool IsGrounded { get; set; } = true;
-    public bool IsHurt { get; set; } = false;
     public bool IsDead { get; set; } = false;
     public bool IsAttacking { get; set; } = false;
 

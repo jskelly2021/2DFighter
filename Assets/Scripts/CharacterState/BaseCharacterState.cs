@@ -23,7 +23,6 @@ public abstract class BaseCharacterState : MonoBehaviour
         MoveHorizontal();
         Crouch();
         Jump();
-        Hurt();
         Dead();
         Attack();
     }
@@ -49,7 +48,6 @@ public abstract class BaseCharacterState : MonoBehaviour
     protected virtual void MoveHorizontal() { }
     protected virtual void Crouch() { }
     protected virtual void Jump() { }
-    protected virtual void Hurt() { }
     protected virtual void Dead() 
     {
         if (character.IsDead)

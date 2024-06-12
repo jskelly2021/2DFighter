@@ -22,12 +22,10 @@ public abstract class AttackComponent : MonoBehaviour
 
     protected void HandleAttack()
     {
-        if (currentCharacterState != character.GetCharacterState())
-        {
-            currentCharacterState = character.GetCharacterState();
+        if (currentCharacterState == character.GetCharacterState())
             return;
-        }
-
+        
+        currentCharacterState = character.GetCharacterState();
         Attack();
     }
 
@@ -68,8 +66,12 @@ public abstract class AttackComponent : MonoBehaviour
         {
             CharacterBase enemyBase = enemy.GetComponentInParent<CharacterBase>();
 
-            if (enemyBase != null)
-                enemyBase.SetCharacterState(CharacterState.Hurt);
+            if (enemyBase == null)
+                continue;
+            if (enemyBase == character)
+                continue;
+
+            enemyBase.SetCharacterState(CharacterState.Hurt);
         }
     }
 
