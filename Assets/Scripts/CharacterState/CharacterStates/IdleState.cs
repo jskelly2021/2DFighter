@@ -3,6 +3,16 @@ using UnityEngine;
 
 public class IdleState : BaseCharacterState
 {
+    protected void FixedUpdate()
+    {
+        MoveHorizontal();
+        Crouch();
+        Jump();
+        Dead();
+        Attack();
+        Block();
+    }
+
     protected override void MoveHorizontal()
     {
         body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
@@ -35,4 +45,11 @@ public class IdleState : BaseCharacterState
         if (character.IsAttacking)
             character.SetCharacterState(CharacterState.NuetralAttack);
     }
+
+    protected override void Block()
+    {
+        if (character.IsBlocking)
+            character.SetCharacterState(CharacterState.Block);
+    }
+
 }

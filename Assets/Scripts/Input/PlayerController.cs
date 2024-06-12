@@ -60,6 +60,6 @@ public class PlayerController : MonoBehaviour
     private void OnAttackPerformed(InputAction.CallbackContext context) => character.IsAttacking = true;
     private void OnAttackCancelled(InputAction.CallbackContext context) => character.IsAttacking = false;
 
-    private void OnBlockPerformed(InputAction.CallbackContext context) => character.IsAttacking = true;
-    private void OnBlockCanceled(InputAction.CallbackContext context) => character.IsAttacking = false;
+    private void OnBlockPerformed(InputAction.CallbackContext context) => character.IsBlocking = true;
+    private void OnBlockCanceled(InputAction.CallbackContext context) => character.IsBlocking = false;
 }

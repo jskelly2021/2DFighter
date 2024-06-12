@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class CrouchState : BaseCharacterState
 {
+    protected void FixedUpdate()
+    {
+        MoveHorizontal();
+        Crouch();
+        Attack();
+    }
     protected override void MoveHorizontal()
     {
         body.velocity = new Vector2(0, body.velocity.y);

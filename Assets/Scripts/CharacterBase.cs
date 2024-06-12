@@ -35,6 +35,7 @@ public class CharacterBase : MonoBehaviour
     public bool IsGrounded { get; set; } = true;
     public bool IsDead { get; set; } = false;
     public bool IsAttacking { get; set; } = false;
+    public bool IsBlocking { get; set; } = false;
 
     private CharacterState state = CharacterState.Idle;
     public void SetCharacterState(CharacterState newState) => state = newState;

@@ -18,15 +18,6 @@ public abstract class BaseCharacterState : MonoBehaviour
         CheckFlipCharacter();
     }
 
-    private void FixedUpdate()
-    {
-        MoveHorizontal();
-        Crouch();
-        Jump();
-        Dead();
-        Attack();
-    }
-
     protected void CheckFlipCharacter()
     {
         if (character.Direction < 0 && character.IsFacingRight)
@@ -55,7 +46,8 @@ public abstract class BaseCharacterState : MonoBehaviour
             character.SetCharacterState(CharacterState.Dead);
         }
     }
-    protected virtual void Attack() {}
+    protected virtual void Attack() { }
+    protected virtual void Block() { }
 }
 
 

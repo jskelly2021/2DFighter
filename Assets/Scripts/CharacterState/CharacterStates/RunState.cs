@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class RunState : BaseCharacterState
 {
+    protected void FixedUpdate()
+    {
+        MoveHorizontal();
+        Attack();
+    }
+
     protected override void MoveHorizontal()
     {
         body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
