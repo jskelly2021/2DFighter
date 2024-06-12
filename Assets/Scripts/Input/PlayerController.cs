@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private InputAction horizontalMoveAction;
     private InputAction jumpAction;
     private InputAction attackAction;
+    private InputAction blockAction;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
         horizontalMoveAction = playerInput.actions["HorizontalMove"];
         jumpAction = playerInput.actions["Jump"];
         attackAction = playerInput.actions["Attack"];
+        blockAction = playerInput.actions["Block"];
     }
 
     private void OnEnable()
@@ -26,10 +28,13 @@ public class PlayerController : MonoBehaviour
         horizontalMoveAction.performed += OnHorizontalMovePerformed;
         jumpAction.performed += OnJumpPerformed;
         attackAction.performed += OnAttackPerformed;
+        blockAction.performed += OnBlockPerformed;
 
         horizontalMoveAction.canceled += OnHorizontalMoveCancelled;
         jumpAction.canceled += OnJumpCancelled;
         attackAction.canceled += OnAttackCancelled;
+        blockAction.canceled += OnBlockCanceled;
+
     }
 
     private void OnDisable()
@@ -37,10 +42,13 @@ public class PlayerController : MonoBehaviour
         horizontalMoveAction.performed -= OnHorizontalMovePerformed;
         jumpAction.performed -= OnJumpPerformed;
         attackAction.performed -= OnAttackPerformed;
+        blockAction.performed -= OnBlockPerformed;
+
 
         horizontalMoveAction.canceled -= OnHorizontalMoveCancelled;
         jumpAction.canceled -= OnJumpCancelled;
         attackAction.canceled -= OnAttackCancelled;
+        blockAction.canceled -= OnBlockCanceled;
     }
 
     private void OnHorizontalMovePerformed(InputAction.CallbackContext context)
@@ -69,4 +77,7 @@ public class PlayerController : MonoBehaviour
     {
         character.IsAttacking = false;
     }
+
+    private void OnBlockPerformed(InputAction.CallbackContext context) => character.IsAttacking = true;
+    private void OnBlockCanceled(InputAction.CallbackContext context) => character.IsAttacking = false;
 }
