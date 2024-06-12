@@ -920,8 +920,8 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a06753ad-f8d8-4262-93cf-6a7da80afee4
     m_ActionName: Player/Attack[/Keyboard/f]
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Keyboard
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

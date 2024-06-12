@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private InputAction horizontalMoveAction;
     private InputAction jumpAction;
+    private InputAction attackAction;
 
     private void Awake()
     {
@@ -17,24 +18,29 @@ public class PlayerController : MonoBehaviour
 
         horizontalMoveAction = playerInput.actions["HorizontalMove"];
         jumpAction = playerInput.actions["Jump"];
+        attackAction = playerInput.actions["Attack"];
     }
 
     private void OnEnable()
     {
         horizontalMoveAction.performed += OnHorizontalMovePerformed;
         jumpAction.performed += OnJumpPerformed;
+        attackAction.performed += OnAttackPerformed;
 
         horizontalMoveAction.canceled += OnHorizontalMoveCancelled;
         jumpAction.canceled += OnJumpCancelled;
+        attackAction.canceled += OnAttackCancelled;
     }
 
     private void OnDisable()
     {
         horizontalMoveAction.performed -= OnHorizontalMovePerformed;
         jumpAction.performed -= OnJumpPerformed;
+        attackAction.performed -= OnAttackPerformed;
 
         horizontalMoveAction.canceled -= OnHorizontalMoveCancelled;
         jumpAction.canceled -= OnJumpCancelled;
+        attackAction.canceled -= OnAttackCancelled;
     }
 
     private void OnHorizontalMovePerformed(InputAction.CallbackContext context)
@@ -43,16 +49,24 @@ public class PlayerController : MonoBehaviour
     }
     private void OnHorizontalMoveCancelled(InputAction.CallbackContext context)
     {
-        character.Direction = 0f;
+        character.Direction = context.ReadValue<float>();
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
-        character.IsJumping = context.action.triggered;
+        character.IsJumping = true;
     }
     private void OnJumpCancelled(InputAction.CallbackContext context)
     {
-        character.IsJumping = context.action.triggered;
+        character.IsJumping = false;
+    }
 
+    private void OnAttackPerformed(InputAction.CallbackContext context)
+    {
+        character.IsAttacking = true;
+    }
+    private void OnAttackCancelled(InputAction.CallbackContext context)
+    {
+        character.IsAttacking = false;
     }
 }
