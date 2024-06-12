@@ -30,12 +30,12 @@ public abstract class BaseCharacterState : MonoBehaviour
 
     protected void CheckFlipCharacter()
     {
-        if (body.velocity.x < 0 && character.IsFacingRight)
+        if (character.Direction < 0 && character.IsFacingRight)
         {
             character.IsFacingRight = false;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-        else if (body.velocity.x > 0 && !character.IsFacingRight)
+        else if (character.Direction > 0 && !character.IsFacingRight)
         {
             character.IsFacingRight = true;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
