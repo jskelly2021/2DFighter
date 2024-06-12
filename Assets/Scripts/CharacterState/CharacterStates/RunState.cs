@@ -6,6 +6,7 @@ public class RunState : BaseCharacterState
     protected void FixedUpdate()
     {
         MoveHorizontal();
+        Jump();
         Attack();
     }
 

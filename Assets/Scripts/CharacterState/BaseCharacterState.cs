@@ -34,6 +34,9 @@ public abstract class BaseCharacterState : MonoBehaviour
     protected virtual void IsGrounded()
     {
         character.IsGrounded = character.groundCheck.IsTouchingLayers(character.groundLayerMask);
+
+        if (character.IsGrounded)
+            character.extraJumpsLeft = character.ExtraJumps;
     }
 
     protected virtual void MoveHorizontal() { }

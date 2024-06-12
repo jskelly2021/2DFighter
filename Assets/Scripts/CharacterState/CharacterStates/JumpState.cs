@@ -29,6 +29,19 @@ public class JumpState : BaseCharacterState
         }
     }
 
+    protected override void Jump()
+    {
+        if (character.extraJumpsLeft <= 0)
+            return;
+
+        if (character.IsJumping)
+        {
+            character.extraJumpsLeft -= 1;
+            body.velocity = new Vector2(body.velocity.x, character.JumpForce);
+            character.SetCharacterState(CharacterState.Jump);
+        }
+    }
+
     protected override void Attack()
     {
         if (character.IsAttacking)
