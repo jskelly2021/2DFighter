@@ -51,32 +51,14 @@ public class PlayerController : MonoBehaviour
         blockAction.canceled -= OnBlockCanceled;
     }
 
-    private void OnHorizontalMovePerformed(InputAction.CallbackContext context)
-    {
-        character.Direction = context.ReadValue<float>();
-    }
-    private void OnHorizontalMoveCancelled(InputAction.CallbackContext context)
-    {
-        character.Direction = context.ReadValue<float>();
-    }
+    private void OnHorizontalMovePerformed(InputAction.CallbackContext context) => character.Direction = context.ReadValue<float>();
+    private void OnHorizontalMoveCancelled(InputAction.CallbackContext context) => character.Direction = context.ReadValue<float>();
 
-    private void OnJumpPerformed(InputAction.CallbackContext context)
-    {
-        character.IsJumping = true;
-    }
-    private void OnJumpCancelled(InputAction.CallbackContext context)
-    {
-        character.IsJumping = false;
-    }
+    private void OnJumpPerformed(InputAction.CallbackContext context) => character.IsJumping = true;
+    private void OnJumpCancelled(InputAction.CallbackContext context) => character.IsJumping = false;
 
-    private void OnAttackPerformed(InputAction.CallbackContext context)
-    {
-        character.IsAttacking = true;
-    }
-    private void OnAttackCancelled(InputAction.CallbackContext context)
-    {
-        character.IsAttacking = false;
-    }
+    private void OnAttackPerformed(InputAction.CallbackContext context) => character.IsAttacking = true;
+    private void OnAttackCancelled(InputAction.CallbackContext context) => character.IsAttacking = false;
 
     private void OnBlockPerformed(InputAction.CallbackContext context) => character.IsAttacking = true;
     private void OnBlockCanceled(InputAction.CallbackContext context) => character.IsAttacking = false;
