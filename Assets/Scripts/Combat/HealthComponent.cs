@@ -29,10 +29,11 @@ public class HealthComponent : MonoBehaviour
         if (character.GetCharacterState() == CharacterState.Hurt)
         {
             TakeDamage(1);
+            PlayerKnockedBack();
         }
     }
 
-    public void TakeDamage(int damage)
+    private void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -40,5 +41,10 @@ public class HealthComponent : MonoBehaviour
         {
             character.SetCharacterState(CharacterState.Dead);
         }
+    }
+
+    private void PlayerKnockedBack()
+    {
+        character.body.velocity = new Vector2(character.KnockBackForce, character.KnockBackForce);
     }
 }

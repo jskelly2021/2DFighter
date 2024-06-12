@@ -10,7 +10,7 @@ public class CharacterBase : MonoBehaviour
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float stunTime = 0.2f;
+    [SerializeField] private float knockBackForce = 5f;
 
     public float Speed 
     { 
@@ -22,10 +22,10 @@ public class CharacterBase : MonoBehaviour
         get { return jumpForce; }
         set { jumpForce = value; }
     }
-    public float StunTime
+    public float KnockBackForce
     {
-        get { return stunTime; }
-        set { stunTime = value; }
+        get { return knockBackForce; }
+        set { knockBackForce = value; }
     }
 
     public float Direction { get; set; } = 0f;

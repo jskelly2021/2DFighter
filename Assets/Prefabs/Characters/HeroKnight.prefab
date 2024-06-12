@@ -243,7 +243,7 @@ MonoBehaviour:
     m_Bits: 256
   speed: 5
   jumpForce: 5
-  stunTime: 0.2
+  knockBackForce: 12
 --- !u!114 &2001519752574673602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22bb4ddccf7c2d4e8fae6e7d1f08b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 5
   maxHealth: 5
 --- !u!114 &961794065313099425
 MonoBehaviour:
