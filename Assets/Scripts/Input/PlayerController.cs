@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         character = GetComponent<CharacterBase>();
+        playerInput = GetComponent<PlayerInput>();
 
         horizontalMoveAction = playerInput.actions["HorizontalMove"];
         jumpAction = playerInput.actions["Jump"];

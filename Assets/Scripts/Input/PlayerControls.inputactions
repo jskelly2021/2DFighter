@@ -6,7 +6,7 @@
             "id": "95611f98-0256-49ed-9daf-9b68c6e81f8f",
             "actions": [
                 {
-                    "name": "Horizontal Movement",
+                    "name": "HorizontalMove",
                     "type": "Button",
                     "id": "33f998e9-572c-4ca9-a2ab-368259dfa2da",
                     "expectedControlType": "Button",
@@ -52,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Horizontal Movement",
+                    "action": "HorizontalMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -63,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Horizontal Movement",
+                    "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -74,7 +74,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Horizontal Movement",
+                    "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
