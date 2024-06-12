@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9183919657345355711}
   - component: {fileID: 2218311009012101175}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6015714135440425543}
   - component: {fileID: 4955406228971456858}
   - component: {fileID: 961794065313099425}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: HeroKnight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ Transform:
   - {fileID: 9031894761760244677}
   - {fileID: 1531764094281789768}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5528522216987755361
 Rigidbody2D:
