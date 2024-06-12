@@ -40,6 +40,10 @@ public class CharacterAnimation : AnimationComponent
             case CharacterState.Dead:
                 animator.SetTrigger("dead");
                 break;
+            
+            case CharacterState.Block:
+                animator.SetTrigger("block");
+                break;
 
 
             // Attacks
