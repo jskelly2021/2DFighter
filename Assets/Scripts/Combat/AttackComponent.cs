@@ -81,11 +81,11 @@ public abstract class AttackComponent : MonoBehaviour
         }
     }
 
-    protected virtual void NuetralAttack() { }
-    protected virtual void FrontAttack() { }
-    protected virtual void BackAttack() { }
-    protected virtual void HighAttack() { }
-    protected virtual void LowAttack() { }
+    protected abstract void NuetralAttack();
+    protected abstract void FrontAttack();
+    protected abstract void BackAttack();
+    protected abstract void HighAttack();
+    protected abstract void LowAttack();
 
 
     // For testing

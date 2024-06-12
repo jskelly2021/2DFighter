@@ -15,6 +15,9 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (character.GetCharacterState() == CharacterState.Block)
+            return;
+
         character.SetCharacterState(CharacterState.Hurt);
         health -= damage;
 
