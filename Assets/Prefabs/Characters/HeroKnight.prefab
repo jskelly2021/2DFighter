@@ -243,7 +243,7 @@ MonoBehaviour:
     m_Bits: 256
   speed: 5
   jumpForce: 5
-  knockBackForce: 12
+  knockBackForce: 5
 --- !u!114 &2001519752574673602
 MonoBehaviour:
   m_ObjectHideFlags: 0

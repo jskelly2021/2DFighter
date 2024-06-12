@@ -17,19 +17,23 @@ public class HealthComponent : MonoBehaviour
 
     private void Update()
     {
-        if (currentCharacterState != character.GetCharacterState())
-        {
-            currentCharacterState = character.GetCharacterState();
-            CheckIfDamaged();
-        }
+        CheckIfDamaged();
     }
 
     private void CheckIfDamaged()
     {
+        if (currentCharacterState == character.GetCharacterState())
+            return;
+
+        currentCharacterState = character.GetCharacterState();
+
+        if (currentCharacterState == CharacterState.Dead)
+            return;
+
         if (character.GetCharacterState() == CharacterState.Hurt)
         {
             TakeDamage(1);
-            PlayerKnockedBack();
+            PlayerKnockedBack(new Vector2(1, 1), character.KnockBackForce);
         }
     }
 
@@ -39,12 +43,13 @@ public class HealthComponent : MonoBehaviour
 
         if(health <= 0)
         {
+            health = 0;
             character.SetCharacterState(CharacterState.Dead);
         }
     }
 
-    private void PlayerKnockedBack()
+    private void PlayerKnockedBack(Vector2 hitDirection, float knockBackForce)
     {
-        character.body.velocity = new Vector2(character.KnockBackForce, character.KnockBackForce);
+        character.body.velocity = new Vector2(hitDirection.x * knockBackForce, hitDirection.y * knockBackForce);
     }
 }
