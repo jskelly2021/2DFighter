@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
@@ -12,6 +13,8 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float knockBackForce = 5f;
     [SerializeField] private int extraJumps = 1;
+
+    public event Action onJump;
 
     public float Speed 
     { 
@@ -34,7 +37,9 @@ public class CharacterBase : MonoBehaviour
     }
 
     public float Direction { get; set; } = 0f;
-    public bool IsJumping { get; set; } = false;
+
+    public void IsJumping() => onJump?.Invoke();
+
     public bool IsCrouching { get; set; } = false;
     public bool IsFacingRight { get; set; } = true;
     public bool IsGrounded { get; set; } = true;

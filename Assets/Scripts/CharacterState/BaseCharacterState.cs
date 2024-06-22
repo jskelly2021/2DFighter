@@ -10,6 +10,17 @@ public abstract class BaseCharacterState : MonoBehaviour
     {
         character = GetComponent<CharacterBase>();
         body = character.body;
+
+    }
+
+    private void OnEnable()
+    {
+        character.onJump += Jump;
+    }
+
+    private void OnDisable()
+    {
+        character.onJump -= Jump;
     }
 
     private void Update()

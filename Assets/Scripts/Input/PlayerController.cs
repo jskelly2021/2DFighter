@@ -1,8 +1,8 @@
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterController
 {
     private CharacterBase character;
     private PlayerInput playerInput;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         blockAction.performed += OnBlockPerformed;
 
         horizontalMoveAction.canceled += OnHorizontalMoveCancelled;
-        jumpAction.canceled += OnJumpCancelled;
+        //jumpAction.canceled += OnJumpCancelled;
         attackAction.canceled += OnAttackCancelled;
         blockAction.canceled += OnBlockCanceled;
 
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
 
         horizontalMoveAction.canceled -= OnHorizontalMoveCancelled;
-        jumpAction.canceled -= OnJumpCancelled;
+        //jumpAction.canceled -= OnJumpCancelled;
         attackAction.canceled -= OnAttackCancelled;
         blockAction.canceled -= OnBlockCanceled;
     }
@@ -54,8 +54,8 @@ public class PlayerController : MonoBehaviour
     private void OnHorizontalMovePerformed(InputAction.CallbackContext context) => character.Direction = context.ReadValue<float>();
     private void OnHorizontalMoveCancelled(InputAction.CallbackContext context) => character.Direction = context.ReadValue<float>();
 
-    private void OnJumpPerformed(InputAction.CallbackContext context) => character.IsJumping = true;
-    private void OnJumpCancelled(InputAction.CallbackContext context) => character.IsJumping = false;
+    private void OnJumpPerformed(InputAction.CallbackContext context) => character.IsJumping();
+    //private void OnJumpCancelled(InputAction.CallbackContext context) => character.IsJumping();
 
     private void OnAttackPerformed(InputAction.CallbackContext context) => character.IsAttacking = true;
     private void OnAttackCancelled(InputAction.CallbackContext context) => character.IsAttacking = false;
