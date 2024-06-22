@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CharacterStateMachine : MonoBehaviour
 {
-    private CharacterBase character;
+    private CharacterStats characterStats;
 
     private BaseCharacterState idle;
     private BaseCharacterState run;

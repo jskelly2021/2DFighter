@@ -4,64 +4,41 @@ using UnityEngine;
 public abstract class BaseCharacterState : MonoBehaviour
 {
     protected Rigidbody2D body;
-    protected CharacterBase character;
+    protected CharacterStats characterStats;
+    protected CharacterController controller;
 
     private void Awake()
     {
-        character = GetComponent<CharacterBase>();
-        body = character.body;
-
+        characterStats = GetComponent<CharacterStats>();
+        controller = GetComponent<CharacterController>();
+        body = characterStats.body;
     }
 
     private void OnEnable()
     {
-
+        controller.onMove += MoveHorizontal;
+        controller.onJump += Jump;
+        controller.onAttack += Attack;
+        controller.onBlock += Block;
     }
 
     private void OnDisable()
     {
-
+        controller.onMove -= MoveHorizontal;
+        controller.onJump -= Jump;
+        controller.onAttack -= Attack;
+        controller.onBlock -= Block;
     }
 
-    private void Update()
+    protected void FlipCharacter()
     {
-        IsGrounded();
-        CheckFlipCharacter();
+        transform.localScale = new Vector2(characterStats.LookDirection, transform.localScale.y);
     }
 
-    protected void CheckFlipCharacter()
-    {
-        if (character.Direction < 0 && character.IsFacingRight)
-        {
-            character.IsFacingRight = false;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-        }
-        else if (character.Direction > 0 && !character.IsFacingRight)
-        {
-            character.IsFacingRight = true;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-        }
-    }
-    protected virtual void IsGrounded()
-    {
-        character.IsGrounded = character.groundCheck.IsTouchingLayers(character.groundLayerMask);
-
-        if (character.IsGrounded)
-            character.extraJumpsLeft = character.ExtraJumps;
-    }
-
-    protected virtual void MoveHorizontal() { }
-    protected virtual void Crouch() { }
-    protected virtual void Jump() { }
-    protected virtual void Dead() 
-    {
-        if (character.IsDead)
-        {
-            character.SetCharacterState(CharacterState.Dead);
-        }
-    }
-    protected virtual void Attack() { }
-    protected virtual void Block() { }
+    protected abstract void MoveHorizontal(float direction);
+    protected abstract void Crouch();
+    protected abstract void Jump();
+    protected abstract void Dead();
+    protected abstract void Attack();
+    protected abstract void Block();
 }
-
-
