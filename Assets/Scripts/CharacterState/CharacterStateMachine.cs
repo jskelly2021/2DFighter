@@ -43,11 +43,51 @@ public class CharacterStateMachine : MonoBehaviour
         currentState.enabled = true;
     }
 
-    private void ChangeCharacterState(CharacterState nextState)
+    public void ChangeCharacterState(CharacterStates nextState)
     {
         currentState.enabled = false;
 
-        currentState = nextState;
+        switch (nextState)
+        {
+            case CharacterStates.Idle:
+                currentState = idle;
+                break;
+
+            case CharacterStates.Run:
+                currentState = run;
+                break;
+
+            case CharacterStates.Jump:
+                currentState = jump;
+                break;
+
+            case CharacterStates.Crouch:
+                currentState = crouch;
+                break;
+
+            case CharacterStates.Hurt:
+                currentState = hurt;
+                break;
+
+            case CharacterStates.Dead:
+                currentState = dead;
+                break;
+
+            case CharacterStates.Block:
+                currentState = block;
+                break;
+
+            case CharacterStates.NuetralAttack:
+            case CharacterStates.FrontAttack:
+            case CharacterStates.BackAttack:
+            case CharacterStates.HighAttack:
+            case CharacterStates.LowAttack:
+                currentState = attack;
+                break;
+
+            default:
+                break;
+        }
         currentState.enabled = true;
     }
 
