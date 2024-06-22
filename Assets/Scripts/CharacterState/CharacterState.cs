@@ -3,12 +3,14 @@ using UnityEngine;
 
 public abstract class CharacterState : MonoBehaviour
 {
-    protected Rigidbody2D body;
+    protected CharacterStateMachine stateMachine;
     protected CharacterStats characterStats;
     protected CharacterController controller;
+    protected Rigidbody2D body;
 
     private void Awake()
     {
+        stateMachine = GetComponent<CharacterStateMachine>();
         characterStats = GetComponent<CharacterStats>();
         controller = GetComponent<CharacterController>();
         body = characterStats.body;
