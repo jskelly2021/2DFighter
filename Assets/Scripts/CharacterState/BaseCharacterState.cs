@@ -15,12 +15,12 @@ public abstract class BaseCharacterState : MonoBehaviour
 
     private void OnEnable()
     {
-        character.onJump += Jump;
+
     }
 
     private void OnDisable()
     {
-        character.onJump -= Jump;
+
     }
 
     private void Update()

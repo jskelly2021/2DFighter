@@ -1,7 +1,5 @@
 
-using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 
 public class PlayerController : CharacterController
 {
@@ -37,4 +35,12 @@ public class PlayerController : CharacterController
         attackAction.performed -= OnAttackPerformed;
         blockAction.performed -= OnBlockPerformed;
     }
+
+    protected void OnMovePerformed(InputAction.CallbackContext context) => InvokeMove(context.ReadValue<float>());
+
+    protected void OnJumpPerformed(InputAction.CallbackContext context) => InvokeJump();
+
+    protected void OnAttackPerformed(InputAction.CallbackContext context) => InvokeAttack();
+
+    protected void OnBlockPerformed(InputAction.CallbackContext context) => InvokeBlock();
 }
