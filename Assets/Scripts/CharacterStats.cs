@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class CharacterBase : MonoBehaviour
+public class CharacterStats : MonoBehaviour
 {
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
