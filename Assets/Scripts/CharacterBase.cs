@@ -14,7 +14,6 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private float knockBackForce = 5f;
     [SerializeField] private int extraJumps = 1;
 
-    public event Action onJump;
 
     public float Speed 
     { 
@@ -38,7 +37,6 @@ public class CharacterBase : MonoBehaviour
 
     public float Direction { get; set; } = 0f;
 
-    public void IsJumping() => onJump?.Invoke();
 
     public bool IsCrouching { get; set; } = false;
     public bool IsFacingRight { get; set; } = true;

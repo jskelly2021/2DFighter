@@ -1,10 +1,10 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerController : CharacterController
 {
-    private CharacterBase character;
     private PlayerInput playerInput;
 
     private InputAction horizontalMoveAction;
@@ -14,7 +14,6 @@ public class PlayerController : CharacterController
 
     private void Awake()
     {
-        character = GetComponent<CharacterBase>();
         playerInput = GetComponent<PlayerInput>();
 
         horizontalMoveAction = playerInput.actions["HorizontalMove"];
@@ -25,41 +24,17 @@ public class PlayerController : CharacterController
 
     private void OnEnable()
     {
-        horizontalMoveAction.performed += OnHorizontalMovePerformed;
+        horizontalMoveAction.performed += OnMovePerformed;
         jumpAction.performed += OnJumpPerformed;
         attackAction.performed += OnAttackPerformed;
         blockAction.performed += OnBlockPerformed;
-
-        horizontalMoveAction.canceled += OnHorizontalMoveCancelled;
-        //jumpAction.canceled += OnJumpCancelled;
-        attackAction.canceled += OnAttackCancelled;
-        blockAction.canceled += OnBlockCanceled;
-
     }
 
     private void OnDisable()
     {
-        horizontalMoveAction.performed -= OnHorizontalMovePerformed;
+        horizontalMoveAction.performed -= OnMovePerformed;
         jumpAction.performed -= OnJumpPerformed;
         attackAction.performed -= OnAttackPerformed;
         blockAction.performed -= OnBlockPerformed;
-
-
-        horizontalMoveAction.canceled -= OnHorizontalMoveCancelled;
-        //jumpAction.canceled -= OnJumpCancelled;
-        attackAction.canceled -= OnAttackCancelled;
-        blockAction.canceled -= OnBlockCanceled;
     }
-
-    private void OnHorizontalMovePerformed(InputAction.CallbackContext context) => character.Direction = context.ReadValue<float>();
-    private void OnHorizontalMoveCancelled(InputAction.CallbackContext context) => character.Direction = context.ReadValue<float>();
-
-    private void OnJumpPerformed(InputAction.CallbackContext context) => character.IsJumping();
-    //private void OnJumpCancelled(InputAction.CallbackContext context) => character.IsJumping();
-
-    private void OnAttackPerformed(InputAction.CallbackContext context) => character.IsAttacking = true;
-    private void OnAttackCancelled(InputAction.CallbackContext context) => character.IsAttacking = false;
-
-    private void OnBlockPerformed(InputAction.CallbackContext context) => character.IsBlocking = true;
-    private void OnBlockCanceled(InputAction.CallbackContext context) => character.IsBlocking = false;
 }
