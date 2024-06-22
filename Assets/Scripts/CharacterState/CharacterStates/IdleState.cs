@@ -1,19 +1,9 @@
 
 using UnityEngine;
 
-public class IdleState : BaseCharacterState
+public class IdleState : CharacterState
 {
-    protected void FixedUpdate()
-    {
-        MoveHorizontal();
-        Crouch();
-        Jump();
-        Dead();
-        Attack();
-        Block();
-    }
-
-    protected override void MoveHorizontal()
+    protected override void MoveHorizontal(float direction)
     {
         body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
 
@@ -52,4 +42,5 @@ public class IdleState : BaseCharacterState
             character.SetCharacterState(CharacterState.Block);
     }
 
+    protected override void Dead() { }
 }

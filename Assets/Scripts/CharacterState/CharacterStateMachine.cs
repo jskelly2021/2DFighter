@@ -3,53 +3,33 @@ using UnityEngine;
 
 public class CharacterStateMachine : MonoBehaviour
 {
-    private CharacterStats characterStats;
+    private CharacterState idle;
+    private CharacterState run;
+    private CharacterState jump;
+    private CharacterState crouch;
+    private CharacterState hurt;
+    private CharacterState dead;
+    private CharacterState attack;
+    private CharacterState block;
 
-    private BaseCharacterState idle;
-    private BaseCharacterState run;
-    private BaseCharacterState jump;
-    private BaseCharacterState crouch;
-    private BaseCharacterState hurt;
-    private BaseCharacterState dead;
-    private BaseCharacterState attack;
-    private BaseCharacterState block;
-
-    private CharacterState currentCharacterState;
+    [SerializeField] private CharacterState currentState;
 
     private void Awake()
     {
-        character = GetComponent<CharacterBase>();
         InitStates();
-
-        currentCharacterState = character.GetCharacterState();
-        ChangeMoveState();
-    }
-
-    private void Update()
-    {
-        if (character.GetCharacterState() != currentCharacterState)
-        {
-            currentCharacterState = character.GetCharacterState();
-            ChangeMoveState();
-        }
     }
 
     private void InitStates()
     {
-        idle = character.gameObject.AddComponent<IdleState>();
-        jump = character.gameObject.AddComponent<JumpState>();
-        run = character.gameObject.AddComponent<RunState>();
-        crouch = character.gameObject.AddComponent<CrouchState>();
-        hurt = character.gameObject.AddComponent<HurtState>();
-        dead = character.gameObject.AddComponent<DeadState>();
-        attack = character.gameObject.AddComponent<AttackState>();
-        block = character.gameObject.AddComponent<BlockState>();
+        idle = gameObject.AddComponent<IdleState>();
+        jump = gameObject.AddComponent<JumpState>();
+        run = gameObject.AddComponent<RunState>();
+        crouch = gameObject.AddComponent<CrouchState>();
+        hurt = gameObject.AddComponent<HurtState>();
+        dead = gameObject.AddComponent<DeadState>();
+        attack = gameObject.AddComponent<AttackState>();
+        block = gameObject.AddComponent<BlockState>();
 
-        DisableAllStates();
-    }
-
-    public void DisableAllStates()
-    {
         idle.enabled = false;
         jump.enabled = false;
         run.enabled = false;
@@ -58,53 +38,17 @@ public class CharacterStateMachine : MonoBehaviour
         dead.enabled = false;
         attack.enabled = false;
         block.enabled = false;
+
+        currentState = idle;
+        currentState.enabled = true;
     }
 
-    private void ChangeMoveState()
+    private void ChangeCharacterState(CharacterState nextState)
     {
-        DisableAllStates();
+        currentState.enabled = false;
 
-        switch (currentCharacterState)
-        {
-            case CharacterState.Idle:
-                idle.enabled = true;
-                break;
-            
-            case CharacterState.Run:
-                run.enabled = true;
-                break;
-            
-            case CharacterState.Jump:
-                jump.enabled = true;
-                break;
-            
-            case CharacterState.Crouch:
-                crouch.enabled = true;
-                break;
-            
-            case CharacterState.Hurt:
-                hurt.enabled = true;
-                break;
-            
-            case CharacterState.Dead:
-                dead.enabled = true;
-                break;
-
-            case CharacterState.Block:
-                block.enabled = true;
-                break;
-
-            case CharacterState.NuetralAttack:
-            case CharacterState.FrontAttack:
-            case CharacterState.BackAttack:
-            case CharacterState.HighAttack:
-            case CharacterState.LowAttack:
-                attack.enabled = true;
-                break;
-
-            default:
-                break;
-        }
+        currentState = nextState;
+        currentState.enabled = true;
     }
 
 }
