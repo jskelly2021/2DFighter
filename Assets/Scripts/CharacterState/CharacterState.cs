@@ -40,7 +40,6 @@ public abstract class CharacterState : MonoBehaviour
     protected abstract void MoveHorizontal(float direction);
     protected abstract void Crouch();
     protected abstract void Jump();
-    protected abstract void Dead();
     protected abstract void Attack();
     protected abstract void Block();
 }

@@ -22,8 +22,8 @@ public class CharacterStateMachine : MonoBehaviour
     private void InitStates()
     {
         idle = gameObject.AddComponent<IdleState>();
-        jump = gameObject.AddComponent<JumpState>();
         run = gameObject.AddComponent<RunState>();
+        jump = gameObject.AddComponent<JumpState>();
         crouch = gameObject.AddComponent<CrouchState>();
         hurt = gameObject.AddComponent<HurtState>();
         dead = gameObject.AddComponent<DeadState>();

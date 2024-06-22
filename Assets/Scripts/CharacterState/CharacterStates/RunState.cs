@@ -1,40 +1,34 @@
 
 using UnityEngine;
 
-public class RunState : BaseCharacterState
+public class RunState : CharacterState
 {
-    protected void FixedUpdate()
+    protected override void MoveHorizontal(float direction)
     {
-        MoveHorizontal();
-        Jump();
-        Attack();
-    }
+        body.velocity = new Vector2(direction * stats.speed, body.velocity.y);
 
-    protected override void MoveHorizontal()
-    {
-        body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
-
-        if (character.Direction == 0)
-            character.SetCharacterState(CharacterState.Idle);
+        if (direction == 0)
+            stateMachine.ChangeCharacterState(CharacterStates.Idle);
     }
 
     protected override void Jump()
     {
-        if (character.IsJumping && character.IsGrounded)
+        if (stats.IsGrounded)
         {
-            body.velocity = new Vector2(body.velocity.x, character.JumpForce);
-            character.SetCharacterState(CharacterState.Jump);
+            body.velocity = new Vector2(body.velocity.x, stats.JumpForce);
+            stateMachine.ChangeCharacterState(CharacterStates.Jump);
         }
     }
 
     protected override void Attack()
     {
-        if (!character.IsAttacking)
-            return;
-
-        if (character.Direction > 0)
-            character.SetCharacterState(CharacterState.FrontAttack);
+        if (body.velocity.x > 0)
+            stateMachine.ChangeCharacterState(CharacterStates.FrontAttack);
         else
-            character.SetCharacterState(CharacterState.BackAttack);
+            stateMachine.ChangeCharacterState(CharacterStates.BackAttack);
     }
+
+    protected override void Block() {}
+    protected override void Crouch() {}
+
 }

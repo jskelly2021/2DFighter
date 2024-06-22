@@ -36,6 +36,4 @@ public class IdleState : CharacterState
     {
         stateMachine.ChangeCharacterState(CharacterStates.Block);
     }
-
-    protected override void Dead() {}
 }
