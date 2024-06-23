@@ -4,7 +4,6 @@ using UnityEngine;
 public abstract class AttackComponent : MonoBehaviour
 {
     protected CharacterBase character;
-    protected CharacterState currentCharacterState;
     
     [SerializeField] protected GameObject attackPoint;
     [SerializeField] protected float attackRadius = 0.25f;
@@ -12,44 +11,34 @@ public abstract class AttackComponent : MonoBehaviour
     private void Awake()
     {
         character = gameObject.GetComponent<CharacterBase>();
-        currentCharacterState = character.GetCharacterState();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        HandleAttack();
+        character.onStateChange += Attack;
     }
 
-    protected void HandleAttack()
+    protected void Attack(CharacterStates state)
     {
-        if (currentCharacterState == character.GetCharacterState())
-            return;
-        
-        currentCharacterState = character.GetCharacterState();
-        Attack();
-    }
-
-    protected void Attack()
-    {
-        switch(currentCharacterState)
+        switch(state)
         {
-            case CharacterState.NuetralAttack:
+            case CharacterStates.NuetralAttack:
                 NuetralAttack(); 
                 break;
 
-            case CharacterState.FrontAttack:
+            case CharacterStates.FrontAttack:
                 FrontAttack();
                 break;
             
-            case CharacterState.BackAttack:
+            case CharacterStates.BackAttack:
                 BackAttack();
                 break;
 
-            case CharacterState.HighAttack:
+            case CharacterStates.HighAttack:
                 HighAttack();
                 break;
 
-            case CharacterState.LowAttack:
+            case CharacterStates.LowAttack:
                 LowAttack();
                 break;
 
@@ -60,7 +49,7 @@ public abstract class AttackComponent : MonoBehaviour
 
     protected void MeleeAttack()
     {
-        Collider2D[] opponents = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRadius, character.enemiesLayerMask);
+        Collider2D[] opponents = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRadius, character.opponentLayerMask);
 
         foreach (Collider2D opponent in opponents)
         {
@@ -74,10 +63,10 @@ public abstract class AttackComponent : MonoBehaviour
             opponentHealth.TakeDamage(1);
 
             Vector2 knockBackDirection = new Vector2(-1, 1);
-            if (character.IsFacingRight)
+            if (character.LookDirection > 0)
                 knockBackDirection = new Vector2(1, 1);
 
-            opponentHealth.KnockBack(knockBackDirection, character.KnockBackForce);
+            opponentHealth.KnockBack(knockBackDirection, character.HitForce);
         }
     }
 

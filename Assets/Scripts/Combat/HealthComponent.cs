@@ -15,22 +15,22 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (character.GetCharacterState() == CharacterState.Block)
+        if (character.CurrentState == CharacterStates.Block)
             return;
 
-        character.SetCharacterState(CharacterState.Hurt);
+        character.CurrentState = CharacterStates.Hurt;
         health -= damage;
 
         if(health <= 0)
         {
             health = 0;
-            character.SetCharacterState(CharacterState.Dead);
+            character.CurrentState = CharacterStates.Dead;
         }
     }
 
     public void KnockBack(Vector2 hitDirection, float knockBackForce)
     {
-        if (character.GetCharacterState() == CharacterState.Block)
+        if (character.CurrentState == CharacterStates.Block)
             return;
 
         character.body.velocity = new Vector2(hitDirection.x * knockBackForce, hitDirection.y * knockBackForce);
