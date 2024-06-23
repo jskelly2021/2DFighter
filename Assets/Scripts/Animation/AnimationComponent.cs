@@ -4,22 +4,22 @@ using UnityEngine;
 public abstract class AnimationComponent : MonoBehaviour
 {
     [SerializeField] protected Animator animator;
- 
     protected CharacterBase character;
-    protected CharacterState currentCharacterState;
 
     private void Awake()
     {
         character = GetComponent<CharacterBase>();
-        currentCharacterState = character.GetCharacterState();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        HandleAnimations();
+        character.onStateChange += Play;
     }
 
-    protected abstract void HandleAnimations();
+    private void OnDisable()
+    {
+        character.onStateChange -= Play;
+    }
 
-    protected abstract void Play();
+    protected abstract void Play(CharacterStates state);
 }
