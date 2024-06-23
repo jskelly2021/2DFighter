@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class HurtState : BaseCharacterState
+public class HurtState : CharacterState
 {
-   
+
 }

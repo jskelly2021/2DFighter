@@ -1,19 +1,11 @@
 
 using UnityEngine;
 
-public class DeadState : BaseCharacterState
+public class DeadState : CharacterState
 {
-    protected void FixedUpdate()
-    {
-        Jump();
-    }
-
     // Only for testing
     protected override void Jump()
     {
-        if (character.IsJumping)
-        {
-            character.SetCharacterState(CharacterState.Jump);
-        }
+        character.CurrentState = CharacterStates.Jump;
     }
 }

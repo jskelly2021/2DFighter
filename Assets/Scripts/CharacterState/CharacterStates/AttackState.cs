@@ -1,15 +1,10 @@
 
 using UnityEngine;
 
-public class AttackState : BaseCharacterState
+public class AttackState : CharacterState
 {
-    protected void FixedUpdate()
+    protected override void MoveHorizontal(float direction)
     {
-        MoveHorizontal();    
-    }
-
-    protected override void MoveHorizontal()
-    {
-        body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
+        body.velocity = new Vector2(direction * character.Speed, body.velocity.y);
     }
 }

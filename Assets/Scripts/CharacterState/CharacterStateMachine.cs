@@ -12,11 +12,23 @@ public class CharacterStateMachine : MonoBehaviour
     private CharacterState attack;
     private CharacterState block;
 
+    private CharacterBase character;
     [SerializeField] private CharacterState currentState;
 
     private void Awake()
     {
+        character = gameObject.GetComponent<CharacterBase>();
         InitStates();
+    }
+
+    private void OnEnable()
+    {
+        character.onStateChange += ChangeCharacterState;
+    }
+
+    private void OnDisable()
+    {
+        character.onStateChange -= ChangeCharacterState;
     }
 
     private void InitStates()

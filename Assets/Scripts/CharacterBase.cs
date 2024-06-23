@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class CharacterBase
@@ -8,22 +9,45 @@ public class CharacterBase
     public LayerMask groundLayerMask;
     public LayerMask opponentLayerMask;
 
-    public float speed = 5f;
-    public float jumpForce = 5f;
-    public float knockBackForce = 5f;
-    public int extraJumps = 1;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float hitForce = 5f;
+    [SerializeField] private int numExtraJumps = 1;
 
     [SerializeField] private int lookDirection = 1;
     [SerializeField] private bool isGrounded = true;
+
+    [SerializeField] private CharacterStates currentState = CharacterStates.Idle;
+    public event Action<CharacterStates> onStateChange;
+    
+    public float Speed 
+    { 
+        get { return speed; } 
+    }
+
+    public float JumpForce
+    {
+        get { return jumpForce; } 
+    }
+
+    public float HitForce
+    {
+        get { return hitForce; }
+    }
+
+    public int NumExtraJumps
+    {
+        get { return numExtraJumps; }
+    }
 
     public int LookDirection
     {
         get
         {
-            if (body.velocity.x < 0 && lookDirection < 1)
+            if (body.velocity.x < 0)
                 lookDirection = -1;
 
-            else if (body.velocity.x > 0 && lookDirection < 1)
+            else if (body.velocity.x > 0)
                 lookDirection = 1;
 
             return lookDirection;
@@ -36,6 +60,16 @@ public class CharacterBase
         { 
             isGrounded = groundCheck.IsTouchingLayers(groundLayerMask);
             return isGrounded;
+        }
+    }
+
+    public CharacterStates CurrentState
+    {
+        get { return currentState; }
+        set
+        {
+            currentState = value;
+            onStateChange?.Invoke(value);
         }
     }
 }

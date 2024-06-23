@@ -5,17 +5,17 @@ public class IdleState : CharacterState
 {
     protected override void MoveHorizontal(float direction)
     {
-        body.velocity = new Vector2(direction * character.speed, body.velocity.y);
+        body.velocity = new Vector2(direction * character.Speed, body.velocity.y);
 
         if (direction != 0)
         {
-            stateMachine.ChangeCharacterState(CharacterStates.Run);
+            character.CurrentState = CharacterStates.Run;
         }
     }
 
     protected override void Crouch()
     {
-        stateMachine.ChangeCharacterState(CharacterStates.Crouch);
+        character.CurrentState = CharacterStates.Crouch;
     }
 
     protected override void Jump()
@@ -23,17 +23,17 @@ public class IdleState : CharacterState
         if (character.IsGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, character.jumpForce);
-            stateMachine.ChangeCharacterState(CharacterStates.Jump);
+            character.CurrentState = CharacterStates.Jump;
         }
     }
 
     protected override void Attack()
     {
-        stateMachine.ChangeCharacterState(CharacterStates.NuetralAttack);
+        character.CurrentState = CharacterStates.NuetralAttack;
     }
 
     protected override void Block()
     {
-        stateMachine.ChangeCharacterState(CharacterStates.Block);
+        character.CurrentState = CharacterStates.Block;
     }
 }

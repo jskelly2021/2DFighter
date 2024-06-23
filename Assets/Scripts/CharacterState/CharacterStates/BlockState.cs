@@ -1,22 +1,16 @@
 
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class BlockState : BaseCharacterState
+public class BlockState : CharacterState
 {
-    protected void FixedUpdate()
+    protected override void MoveHorizontal(float direction)
     {
-        MoveHorizontal();
-        Block();
-    }
-
-    protected override void MoveHorizontal()
-    {
-        body.velocity = new Vector2(character.Direction * (character.Speed / 2), body.velocity.y);
+        body.velocity = new Vector2(direction * (character.Speed / 2), body.velocity.y);
     }
 
     protected override void Block()
     {
-        if(!character.IsBlocking)
-            character.SetCharacterState(CharacterState.Idle);
+        character.CurrentState = CharacterStates.Idle;
     }
 }

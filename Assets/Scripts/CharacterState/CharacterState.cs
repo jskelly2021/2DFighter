@@ -3,14 +3,12 @@ using UnityEngine;
 
 public abstract class CharacterState : MonoBehaviour
 {
-    protected CharacterStateMachine stateMachine;
     protected CharacterBase character;
     protected CharacterController controller;
     protected Rigidbody2D body;
 
     private void Awake()
     {
-        stateMachine = GetComponent<CharacterStateMachine>();
         character = GetComponent<CharacterBase>();
         controller = GetComponent<CharacterController>();
         body = character.body;
@@ -47,9 +45,9 @@ public abstract class CharacterState : MonoBehaviour
         transform.localScale = new Vector2(character.LookDirection, transform.localScale.y);
     }
 
-    protected abstract void MoveHorizontal(float direction);
-    protected abstract void Crouch();
-    protected abstract void Jump();
-    protected abstract void Attack();
-    protected abstract void Block();
+    protected virtual void MoveHorizontal(float direction) { }
+    protected virtual void Crouch() { }
+    protected virtual void Jump() { }
+    protected virtual void Attack() { }
+    protected virtual void Block() { }
 }
