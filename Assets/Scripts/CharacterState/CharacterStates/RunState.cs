@@ -5,7 +5,7 @@ public class RunState : CharacterState
 {
     protected override void MoveHorizontal(float direction)
     {
-        body.velocity = new Vector2(direction * stats.speed, body.velocity.y);
+        body.velocity = new Vector2(direction * character.speed, body.velocity.y);
 
         if (direction == 0)
             stateMachine.ChangeCharacterState(CharacterStates.Idle);
@@ -13,9 +13,9 @@ public class RunState : CharacterState
 
     protected override void Jump()
     {
-        if (stats.IsGrounded)
+        if (character.IsGrounded)
         {
-            body.velocity = new Vector2(body.velocity.x, stats.JumpForce);
+            body.velocity = new Vector2(body.velocity.x, character.jumpForce);
             stateMachine.ChangeCharacterState(CharacterStates.Jump);
         }
     }

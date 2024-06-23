@@ -4,16 +4,16 @@ using UnityEngine;
 public abstract class CharacterState : MonoBehaviour
 {
     protected CharacterStateMachine stateMachine;
-    protected CharacterInfo stats;
+    protected CharacterBase character;
     protected CharacterController controller;
     protected Rigidbody2D body;
 
     private void Awake()
     {
         stateMachine = GetComponent<CharacterStateMachine>();
-        stats = GetComponent<CharacterInfo>();
+        character = GetComponent<CharacterBase>();
         controller = GetComponent<CharacterController>();
-        body = stats.body;
+        body = character.body;
     }
 
     private void OnEnable()
@@ -32,9 +32,19 @@ public abstract class CharacterState : MonoBehaviour
         controller.onBlock -= Block;
     }
 
+    private void Update()
+    {
+        IsGrounded();
+    }
+
+    protected virtual void IsGrounded()
+    {
+
+    }
+
     protected void FlipCharacter()
     {
-        transform.localScale = new Vector2(stats.LookDirection, transform.localScale.y);
+        transform.localScale = new Vector2(character.LookDirection, transform.localScale.y);
     }
 
     protected abstract void MoveHorizontal(float direction);

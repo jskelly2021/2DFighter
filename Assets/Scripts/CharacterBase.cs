@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class CharacterInfo
+public class CharacterBase
 {
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;

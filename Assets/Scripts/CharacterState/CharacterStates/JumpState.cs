@@ -1,19 +1,11 @@
 
 using UnityEngine;
 
-public class JumpState : BaseCharacterState
+public class JumpState : CharacterState
 {
-    protected void FixedUpdate()
+    protected override void MoveHorizontal(float direction)
     {
-        MoveHorizontal();
-        Crouch();
-        Jump();
-        Attack();
-    }
-
-    protected override void MoveHorizontal()
-    {
-        body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
+        body.velocity = new Vector2(direction * character.speed, body.velocity.y);
     }
 
     protected override void IsGrounded()
@@ -31,21 +23,19 @@ public class JumpState : BaseCharacterState
 
     protected override void Jump()
     {
-        if (character.extraJumpsLeft <= 0)
+        if (stats.extraJumps <= 0)
             return;
 
-        if (character.IsJumping)
-        {
-            character.extraJumpsLeft -= 1;
-            body.velocity = new Vector2(body.velocity.x, character.JumpForce);
-            character.SetCharacterState(CharacterState.Jump);
-        }
+        stats.extraJumps -= 1;
+        body.velocity = new Vector2(body.velocity.x, stats.jumpForce);
+        stateMachine.ChangeCharacterState(CharacterStates.Jump);
     }
 
     protected override void Attack()
     {
-        if (character.IsAttacking)
-            character.SetCharacterState(CharacterState.HighAttack);
+            stateMachine.ChangeCharacterState(CharacterStates.HighAttack);
     }
 
+    protected override void Block() {}
+    protected override void Crouch() {}
 }
