@@ -68,7 +68,11 @@ public class PlayerController : CharacterController
 
     private void OnMoveAction(InputAction.CallbackContext context) => characterBase.CurrentVelocity = context.ReadValue<float>();
 
-    private void OnJumpAction(InputAction.CallbackContext context) => InvokeJump();
+    private void OnJumpAction(InputAction.CallbackContext context)
+    {
+        print("Jumping " + context.ToString());
+        InvokeJump();
+    }
 
     private void OnAttackAction(InputAction.CallbackContext context) => InvokeAttack();
 
