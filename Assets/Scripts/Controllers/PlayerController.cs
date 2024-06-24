@@ -28,33 +28,39 @@ public class PlayerController : CharacterController
         blockAction = playerInput.actions["Block"];
     }
 
-    private void OnEnable()
+    private void OnEnable() => SubscribeActions(true);
+
+    private void OnDisable() => SubscribeActions(false);
+
+    private void SubscribeActions(bool subscribe)
     {
         if (playerInput == null)
             return;
 
-        horizontalMoveAction.started += OnMoveAction;
-        horizontalMoveAction.performed += OnMoveAction;
-        horizontalMoveAction.canceled += OnMoveAction;
+        if (subscribe)
+        {
+            horizontalMoveAction.started += OnMoveAction;
+            horizontalMoveAction.performed += OnMoveAction;
+            horizontalMoveAction.canceled += OnMoveAction;
 
-        jumpAction.started += OnJumpAction;
-        attackAction.started += OnAttackAction;
+            jumpAction.started += OnJumpAction;
 
-        blockAction.started += OnBlockAction;
-        blockAction.canceled += OnBlockAction;
-    }
+            attackAction.started += OnAttackAction;
+            attackAction.canceled += OnAttackAction;
 
-    private void OnDisable()
-    {
-        if (playerInput == null)
+            blockAction.started += OnBlockAction;
+            blockAction.canceled += OnBlockAction;
             return;
+        }
 
         horizontalMoveAction.started -= OnMoveAction;
         horizontalMoveAction.performed -= OnMoveAction;
         horizontalMoveAction.canceled -= OnMoveAction;
 
         jumpAction.started -= OnJumpAction;
+
         attackAction.started -= OnAttackAction;
+        attackAction.canceled -= OnAttackAction;
 
         blockAction.started -= OnBlockAction;
         blockAction.canceled -= OnBlockAction;

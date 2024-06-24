@@ -13,6 +13,7 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float hitForce = 5f;
     [SerializeField] private int numExtraJumps = 1;
+    [SerializeField] private int extraJumpsLeft = 1;
 
     [SerializeField] private float currentVelocity = 0;
     [SerializeField] private int lookDirection = 1;
@@ -40,6 +41,11 @@ public class CharacterBase : MonoBehaviour
     {
         get { return numExtraJumps; }
     }
+    public int ExtraJumpsLeft
+    {
+        get { return extraJumpsLeft; }
+        set { extraJumpsLeft = value; }
+    }
 
     public float CurrentVelocity
     {
@@ -49,16 +55,8 @@ public class CharacterBase : MonoBehaviour
 
     public int LookDirection
     {
-        get
-        {
-            if (body.velocity.x < 0)
-                lookDirection = -1;
-
-            else if (body.velocity.x > 0)
-                lookDirection = 1;
-
-            return lookDirection;
-        }
+        get { return lookDirection; }
+        set { lookDirection = value; }
     }
 
     public bool IsGrounded

@@ -42,10 +42,17 @@ public abstract class CharacterState : MonoBehaviour
     protected virtual void IsGrounded() 
     {
         character.IsGrounded = character.groundCheck.IsTouchingLayers(character.groundLayerMask);
+        character.ExtraJumpsLeft = character.NumExtraJumps;
     }
 
     protected void FlipCharacter()
     {
+        if (body.velocity.x < 0)
+            character.LookDirection = -1;
+
+        else if (body.velocity.x > 0)
+            character.LookDirection = 1;
+
         transform.localScale = new Vector2(character.LookDirection, transform.localScale.y);
     }
 

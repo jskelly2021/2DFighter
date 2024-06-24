@@ -10,9 +10,10 @@ public class JumpState : CharacterState
 
     protected override void Jump()
     {
-        if (character.NumExtraJumps <= 0)
+        if (character.ExtraJumpsLeft <= 0)
             return;
 
+        character.ExtraJumpsLeft -= 1;
         body.velocity = new Vector2(body.velocity.x, character.JumpForce);
         character.CurrentState = CharacterStates.Jump;
     }
@@ -26,5 +27,6 @@ public class JumpState : CharacterState
     {
         if (character.IsGrounded && body.velocity.y == 0)
             character.CurrentState = CharacterStates.Idle;
+
     }
 }
