@@ -16,7 +16,6 @@ public abstract class CharacterState : MonoBehaviour
 
     private void OnEnable()
     {
-        controller.onMove += MoveHorizontal;
         controller.onJump += Jump;
         controller.onAttack += Attack;
         controller.onBlock += Block;
@@ -24,7 +23,6 @@ public abstract class CharacterState : MonoBehaviour
 
     private void OnDisable()
     {
-        controller.onMove -= MoveHorizontal;
         controller.onJump -= Jump;
         controller.onAttack -= Attack;
         controller.onBlock -= Block;
@@ -33,6 +31,7 @@ public abstract class CharacterState : MonoBehaviour
     private void Update()
     {
         IsGrounded();
+        FlipCharacter();
     }
 
     private void FixedUpdate()
@@ -40,7 +39,10 @@ public abstract class CharacterState : MonoBehaviour
         MoveHorizontal(character.CurrentVelocity);
     }
 
-    protected virtual void IsGrounded() {}
+    protected virtual void IsGrounded() 
+    {
+        character.IsGrounded = character.groundCheck.IsTouchingLayers(character.groundLayerMask);
+    }
 
     protected void FlipCharacter()
     {

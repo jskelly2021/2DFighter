@@ -19,7 +19,12 @@ public class JumpState : CharacterState
 
     protected override void Attack()
     {
-            character.CurrentState = CharacterStates.HighAttack;
+        character.CurrentState = CharacterStates.HighAttack;
     }
 
+    protected override void IsGrounded()
+    {
+        if (character.IsGrounded && body.velocity.y == 0)
+            character.CurrentState = CharacterStates.Idle;
+    }
 }

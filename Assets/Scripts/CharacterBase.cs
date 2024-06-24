@@ -63,11 +63,8 @@ public class CharacterBase : MonoBehaviour
 
     public bool IsGrounded
     {
-        get 
-        { 
-            isGrounded = groundCheck.IsTouchingLayers(groundLayerMask);
-            return isGrounded;
-        }
+        get { return isGrounded; }
+        set { isGrounded = value; }
     }
 
     public CharacterStates CurrentState
