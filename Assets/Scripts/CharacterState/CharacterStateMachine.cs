@@ -13,7 +13,7 @@ public class CharacterStateMachine : MonoBehaviour
     private CharacterState block;
 
     private CharacterBase character;
-    [SerializeField] private CharacterState currentState;
+    private CharacterState currentState;
 
     private void Awake()
     {

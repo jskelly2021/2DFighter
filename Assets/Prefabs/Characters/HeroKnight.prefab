@@ -238,12 +238,17 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  enemiesLayerMask:
+  opponentLayerMask:
     serializedVersion: 2
     m_Bits: 256
   speed: 5
   jumpForce: 5
-  knockBackForce: 5
+  hitForce: 5
+  numExtraJumps: 1
+  currentVelocity: 0
+  lookDirection: 1
+  isGrounded: 1
+  currentState: 0
 --- !u!114 &2001519752574673602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: a54af175c3c40cb4dbe9d588b3cb5693, type: 3}
-  m_NotificationBehavior: 3
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -272,9 +277,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9184188152147017795}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: set_runInEditMode
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -305,6 +310,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a06753ad-f8d8-4262-93cf-6a7da80afee4
     m_ActionName: Player/Attack[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43d0d178-8a6e-491b-aaa9-1f83e2e7314b
+    m_ActionName: Player/Block[/Keyboard/c,/XInputControllerWindows/leftShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player

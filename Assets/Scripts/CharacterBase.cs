@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class CharacterBase
+public class CharacterBase : MonoBehaviour
 {
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
@@ -14,6 +14,7 @@ public class CharacterBase
     [SerializeField] private float hitForce = 5f;
     [SerializeField] private int numExtraJumps = 1;
 
+    [SerializeField] private float currentVelocity = 0;
     [SerializeField] private int lookDirection = 1;
     [SerializeField] private bool isGrounded = true;
 
@@ -27,7 +28,7 @@ public class CharacterBase
 
     public float JumpForce
     {
-        get { return jumpForce; } 
+        get { return jumpForce; }
     }
 
     public float HitForce
@@ -38,6 +39,12 @@ public class CharacterBase
     public int NumExtraJumps
     {
         get { return numExtraJumps; }
+    }
+
+    public float CurrentVelocity
+    {
+        get { return currentVelocity; }
+        set { currentVelocity = value; }
     }
 
     public int LookDirection

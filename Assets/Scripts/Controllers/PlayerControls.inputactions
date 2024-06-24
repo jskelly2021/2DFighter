@@ -66,6 +66,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "d55c98c7-d047-404e-97fd-db6521eb01bb",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "71611fc7-9ddc-46e0-8a3e-95ee9b9a239e",
                     "path": "1DAxis",

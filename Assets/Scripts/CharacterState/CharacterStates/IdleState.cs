@@ -22,7 +22,7 @@ public class IdleState : CharacterState
     {
         if (character.IsGrounded)
         {
-            body.velocity = new Vector2(body.velocity.x, character.jumpForce);
+            body.velocity = new Vector2(body.velocity.x, character.JumpForce);
             character.CurrentState = CharacterStates.Jump;
         }
     }

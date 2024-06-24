@@ -35,10 +35,12 @@ public abstract class CharacterState : MonoBehaviour
         IsGrounded();
     }
 
-    protected virtual void IsGrounded()
+    private void FixedUpdate()
     {
-
+        MoveHorizontal(character.CurrentVelocity);
     }
+
+    protected virtual void IsGrounded() {}
 
     protected void FlipCharacter()
     {
