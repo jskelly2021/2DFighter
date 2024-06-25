@@ -245,6 +245,7 @@ MonoBehaviour:
   jumpForce: 5
   hitForce: 5
   numExtraJumps: 1
+  extraJumpsLeft: 1
   currentVelocity: 0
   lookDirection: 1
   isGrounded: 1
@@ -485,7 +486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8304401580789604444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.419, y: 0, z: 0}
+  m_LocalPosition: {x: 0.41, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
