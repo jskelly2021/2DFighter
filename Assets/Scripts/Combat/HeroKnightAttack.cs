@@ -1,6 +1,4 @@
 
-using UnityEngine;
-
 public class HeroKnightAttack : AttackComponent
 {
     protected override void NuetralAttack()

@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
@@ -6,38 +7,71 @@ public class CharacterBase : MonoBehaviour
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
     public LayerMask groundLayerMask;
-    public LayerMask enemiesLayerMask;
+    public LayerMask opponentLayerMask;
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float stunTime = 0.2f;
+    [SerializeField] private float hitForce = 5f;
+    [SerializeField] private int numExtraJumps = 1;
+    [SerializeField] private int extraJumpsLeft = 1;
 
+    [SerializeField] private float currentVelocity = 0;
+    [SerializeField] private int lookDirection = 1;
+    [SerializeField] private bool isGrounded = true;
+
+    [SerializeField] private CharacterStates currentState = CharacterStates.Idle;
+    public event Action<CharacterStates> onStateChange;
+    
     public float Speed 
     { 
-        get { return speed; }
-        set { speed = value; } 
+        get { return speed; } 
     }
+
     public float JumpForce
     {
         get { return jumpForce; }
-        set { jumpForce = value; }
     }
-    public float StunTime
+
+    public float HitForce
     {
-        get { return stunTime; }
-        set { stunTime = value; }
+        get { return hitForce; }
     }
 
-    public float Direction { get; set; } = 0f;
-    public bool IsJumping { get; set; } = false;
-    public bool IsCrouching { get; set; } = false;
-    public bool IsFacingRight { get; set; } = true;
-    public bool IsGrounded { get; set; } = true;
-    public bool IsHurt { get; set; } = false;
-    public bool IsDead { get; set; } = false;
-    public bool IsAttacking { get; set; } = false;
+    public int NumExtraJumps
+    {
+        get { return numExtraJumps; }
+    }
+    public int ExtraJumpsLeft
+    {
+        get { return extraJumpsLeft; }
+        set { extraJumpsLeft = value; }
+    }
 
-    private CharacterState state = CharacterState.Idle;
-    public void SetCharacterState(CharacterState newState) => state = newState;
-    public CharacterState GetCharacterState() => state;
+    public float CurrentVelocity
+    {
+        get { return currentVelocity; }
+        set { currentVelocity = value; }
+    }
+
+    public int LookDirection
+    {
+        get { return lookDirection; }
+        set { lookDirection = value; }
+    }
+
+    public bool IsGrounded
+    {
+        get { return isGrounded; }
+        set { isGrounded = value; }
+    }
+
+    public CharacterStates CurrentState
+    {
+        get { return currentState; }
+        set
+        {
+            currentState = value;
+            onStateChange?.Invoke(value);
+        }
+    }
 }

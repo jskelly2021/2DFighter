@@ -7,26 +7,35 @@
             "actions": [
                 {
                     "name": "HorizontalMove",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "33f998e9-572c-4ca9-a2ab-368259dfa2da",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ce336027-bf54-4845-a74f-f5e5d4ec477b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Attack",
                     "type": "Button",
                     "id": "a06753ad-f8d8-4262-93cf-6a7da80afee4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "43d0d178-8a6e-491b-aaa9-1f83e2e7314b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -49,6 +58,28 @@
                     "name": "",
                     "id": "af2f52c6-310c-4da7-826e-35d6bb6b5e30",
                     "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d55c98c7-d047-404e-97fd-db6521eb01bb",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "122fd339-8d8c-41a2-a153-d8fabad05e29",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -141,6 +172,28 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee6288bd-ce8a-4920-bb65-2d0f0a0b6ed5",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ac08f44-1c2c-4037-8d3a-7987c27360dd",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

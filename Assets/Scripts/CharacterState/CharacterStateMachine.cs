@@ -3,51 +3,45 @@ using UnityEngine;
 
 public class CharacterStateMachine : MonoBehaviour
 {
+    private CharacterState idle;
+    private CharacterState run;
+    private CharacterState jump;
+    private CharacterState crouch;
+    private CharacterState hurt;
+    private CharacterState dead;
+    private CharacterState attack;
+    private CharacterState block;
+
     private CharacterBase character;
-
-    private BaseCharacterState idle;
-    private BaseCharacterState run;
-    private BaseCharacterState jump;
-    private BaseCharacterState crouch;
-    private BaseCharacterState hurt;
-    private BaseCharacterState dead;
-    private BaseCharacterState attack;
-
-    private CharacterState currentCharacterState;
+    private CharacterState currentState;
 
     private void Awake()
     {
-        character = GetComponent<CharacterBase>();
+        character = gameObject.GetComponent<CharacterBase>();
         InitStates();
-
-        currentCharacterState = character.GetCharacterState();
-        ChangeMoveState();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (character.GetCharacterState() != currentCharacterState)
-        {
-            currentCharacterState = character.GetCharacterState();
-            ChangeMoveState();
-        }
+        character.onStateChange += ChangeCharacterState;
+    }
+
+    private void OnDisable()
+    {
+        character.onStateChange -= ChangeCharacterState;
     }
 
     private void InitStates()
     {
-        idle = character.gameObject.AddComponent<IdleState>();
-        jump = character.gameObject.AddComponent<JumpState>();
-        run = character.gameObject.AddComponent<RunState>();
-        crouch = character.gameObject.AddComponent<CrouchState>();
-        hurt = character.gameObject.AddComponent<HurtState>();
-        dead = character.gameObject.AddComponent<DeadState>();
-        attack = character.gameObject.AddComponent<AttackState>();
+        idle = gameObject.AddComponent<IdleState>();
+        run = gameObject.AddComponent<RunState>();
+        jump = gameObject.AddComponent<JumpState>();
+        crouch = gameObject.AddComponent<CrouchState>();
+        hurt = gameObject.AddComponent<HurtState>();
+        dead = gameObject.AddComponent<DeadState>();
+        attack = gameObject.AddComponent<AttackState>();
+        block = gameObject.AddComponent<BlockState>();
 
-        DisableAllStates();
-    }
-
-    public void DisableAllStates()
-    {
         idle.enabled = false;
         jump.enabled = false;
         run.enabled = false;
@@ -55,49 +49,58 @@ public class CharacterStateMachine : MonoBehaviour
         hurt.enabled = false;
         dead.enabled = false;
         attack.enabled = false;
+        block.enabled = false;
+
+        currentState = idle;
+        currentState.enabled = true;
     }
 
-    private void ChangeMoveState()
+    public void ChangeCharacterState(CharacterStates nextState)
     {
-        DisableAllStates();
+        currentState.enabled = false;
 
-        switch (currentCharacterState)
+        switch (nextState)
         {
-            case CharacterState.Idle:
-                idle.enabled = true;
-                break;
-            
-            case CharacterState.Run:
-                run.enabled = true;
-                break;
-            
-            case CharacterState.Jump:
-                jump.enabled = true;
-                break;
-            
-            case CharacterState.Crouch:
-                crouch.enabled = true;
-                break;
-            
-            case CharacterState.Hurt:
-                hurt.enabled = true;
-                break;
-            
-            case CharacterState.Dead:
-                dead.enabled = true;
+            case CharacterStates.Idle:
+                currentState = idle;
                 break;
 
-            case CharacterState.NuetralAttack:
-            case CharacterState.FrontAttack:
-            case CharacterState.BackAttack:
-            case CharacterState.HighAttack:
-            case CharacterState.LowAttack:
-                attack.enabled = true;
+            case CharacterStates.Run:
+                currentState = run;
+                break;
+
+            case CharacterStates.Jump:
+                currentState = jump;
+                break;
+
+            case CharacterStates.Crouch:
+                currentState = crouch;
+                break;
+
+            case CharacterStates.Hurt:
+                currentState = hurt;
+                break;
+
+            case CharacterStates.Dead:
+                currentState = dead;
+                break;
+
+            case CharacterStates.Block:
+                currentState = block;
+                break;
+
+            case CharacterStates.NuetralAttack:
+            case CharacterStates.FrontAttack:
+            case CharacterStates.BackAttack:
+            case CharacterStates.HighAttack:
+            case CharacterStates.LowAttack:
+                currentState = attack;
                 break;
 
             default:
                 break;
         }
+        currentState.enabled = true;
     }
 
 }

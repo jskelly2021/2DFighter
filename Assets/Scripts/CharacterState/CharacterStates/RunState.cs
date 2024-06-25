@@ -1,33 +1,31 @@
 
 using UnityEngine;
 
-public class RunState : BaseCharacterState
+public class RunState : CharacterState
 {
-    protected override void MoveHorizontal()
+    protected override void MoveHorizontal(float direction)
     {
-        body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
+        body.velocity = new Vector2(direction * character.Speed, body.velocity.y);
 
-        if (character.Direction == 0)
-            character.SetCharacterState(CharacterState.Idle);
+        if (direction == 0)
+            character.CurrentState = CharacterStates.Idle;
     }
 
     protected override void Jump()
     {
-        if (character.IsJumping && character.IsGrounded)
+        if (character.IsGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, character.JumpForce);
-            character.SetCharacterState(CharacterState.Jump);
+            character.CurrentState = CharacterStates.Jump;
         }
     }
 
     protected override void Attack()
     {
-        if (!character.IsAttacking)
-            return;
-
-        if (character.Direction > 0)
-            character.SetCharacterState(CharacterState.FrontAttack);
+        if (body.velocity.x > 0)
+            character.CurrentState = CharacterStates.FrontAttack;
         else
-            character.SetCharacterState(CharacterState.BackAttack);
-    }
+            character.CurrentState = CharacterStates.BackAttack;
+    }   
+
 }

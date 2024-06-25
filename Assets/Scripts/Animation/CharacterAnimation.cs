@@ -1,65 +1,57 @@
 
-using UnityEngine;
-using UnityEngine.TextCore.Text;
-
 public class CharacterAnimation : AnimationComponent
 {
-    protected override void HandleAnimations()
+    protected override void Play(CharacterStates state)
     {
-        if (character.GetCharacterState() != currentCharacterState)
+        switch (state)
         {
-            currentCharacterState = character.GetCharacterState();
-            Play();
-        }
-    }
-
-    protected override void Play()
-    {
-        switch (currentCharacterState)
-        {
-            case CharacterState.Idle:
+            case CharacterStates.Idle:
                 animator.SetTrigger("idle");
                 break;
 
-            case CharacterState.Run:
+            case CharacterStates.Run:
                 animator.SetTrigger("run");
                 break;
 
-            case CharacterState.Jump:
+            case CharacterStates.Jump:
                 animator.SetTrigger("jump");
                 break;
 
-            case CharacterState.Crouch:
+            case CharacterStates.Crouch:
                 animator.SetTrigger("crouch");
                 break;
 
-            case CharacterState.Hurt:
+            case CharacterStates.Hurt:
                 animator.SetTrigger("hurt");
                 break;
 
-            case CharacterState.Dead:
+            case CharacterStates.Dead:
                 animator.SetTrigger("dead");
+                break;
+            
+            case CharacterStates.Block:
+                animator.SetTrigger("block");
                 break;
 
 
             // Attacks
-            case CharacterState.NuetralAttack:
+            case CharacterStates.NuetralAttack:
                 animator.SetTrigger("attackOverhead");
                 break;
 
-            case CharacterState.FrontAttack:
+            case CharacterStates.FrontAttack:
                 animator.SetTrigger("attackFront");
                 break;
 
-            case CharacterState.BackAttack:
+            case CharacterStates.BackAttack:
                 animator.SetTrigger("attackBack");
                 break;
 
-            case CharacterState.HighAttack:
+            case CharacterStates.HighAttack:
                 animator.SetTrigger("attackOverhead");
                 break;
   
-            case CharacterState.LowAttack:
+            case CharacterStates.LowAttack:
                 animator.SetTrigger("attackBack");
                 break;
 

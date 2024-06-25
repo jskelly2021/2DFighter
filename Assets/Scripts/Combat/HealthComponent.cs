@@ -3,42 +3,36 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    public int health = 3;
+    public int health = 5;
     public int maxHealth = 5;
 
     private CharacterBase character;
-    private CharacterState currentCharacterState;
 
     private void Awake()
     {
         character = GetComponent<CharacterBase>();
-        currentCharacterState = character.GetCharacterState();
-    }
-
-    private void Update()
-    {
-        if (currentCharacterState != character.GetCharacterState())
-        {
-            currentCharacterState = character.GetCharacterState();
-            CheckIfDamaged();
-        }
-    }
-
-    private void CheckIfDamaged()
-    {
-        if (character.GetCharacterState() == CharacterState.Hurt)
-        {
-            TakeDamage(1);
-        }
     }
 
     public void TakeDamage(int damage)
     {
+        if (character.CurrentState == CharacterStates.Block)
+            return;
+
+        character.CurrentState = CharacterStates.Hurt;
         health -= damage;
 
         if(health <= 0)
         {
-            character.SetCharacterState(CharacterState.Dead);
+            health = 0;
+            character.CurrentState = CharacterStates.Dead;
         }
+    }
+
+    public void KnockBack(Vector2 hitDirection, float knockBackForce)
+    {
+        if (character.CurrentState == CharacterStates.Block)
+            return;
+
+        character.body.velocity = new Vector2(hitDirection.x * knockBackForce, hitDirection.y * knockBackForce);
     }
 }

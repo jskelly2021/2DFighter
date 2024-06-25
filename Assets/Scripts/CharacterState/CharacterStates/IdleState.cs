@@ -1,46 +1,39 @@
 
 using UnityEngine;
 
-public class IdleState : BaseCharacterState
+public class IdleState : CharacterState
 {
-    protected override void MoveHorizontal()
+    protected override void MoveHorizontal(float direction)
     {
-        body.velocity = new Vector2(character.Direction * character.Speed, body.velocity.y);
+        body.velocity = new Vector2(direction * character.Speed, body.velocity.y);
 
-        if (character.Direction != 0)
+        if (direction != 0)
         {
-            character.SetCharacterState(CharacterState.Run);
+            character.CurrentState = CharacterStates.Run;
         }
     }
 
     protected override void Crouch()
     {
-        if (character.IsCrouching)
-        {
-            character.SetCharacterState(CharacterState.Crouch);
-        }
+        character.CurrentState = CharacterStates.Crouch;
     }
 
     protected override void Jump()
     {
-        if (character.IsJumping && character.IsGrounded)
+        if (character.IsGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, character.JumpForce);
-            character.SetCharacterState(CharacterState.Jump);
-        }
-    }
-
-    protected override void Hurt()
-    {
-        if (character.IsHurt)
-        {
-            character.SetCharacterState(CharacterState.Hurt);
+            character.CurrentState = CharacterStates.Jump;
         }
     }
 
     protected override void Attack()
     {
-        if (character.IsAttacking)
-            character.SetCharacterState(CharacterState.NuetralAttack);
+        character.CurrentState = CharacterStates.NuetralAttack;
+    }
+
+    protected override void Block()
+    {
+        character.CurrentState = CharacterStates.Block;
     }
 }
