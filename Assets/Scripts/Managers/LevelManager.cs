@@ -2,44 +2,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager
 {
-    private void Awake()
-    {
-        //DontDestroyOnLoad(this);
-    }
-
-    private void OnEnable()
-    {
-    }
-
-    private void OnDisable()
-    {
-    }
-
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+    }
+
+    public void UnloadScene(string sceneName)
+    {
+        SceneManager.UnloadSceneAsync(sceneName);
     }
 
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void PauseGame()
-    {
-        
-        Time.timeScale = 0.0f;
-    }
-
-    public void Resume()
-    {
-        Time.timeScale = 1.0f;
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 }

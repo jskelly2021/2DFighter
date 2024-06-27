@@ -6,8 +6,6 @@ public class PlayerController : CharacterController
     private CharacterBase characterBase;
     private PlayerInput playerInput;
 
-    public LevelManager LevelManager;
-
     private InputAction horizontalMoveAction;
     private InputAction jumpAction;
     private InputAction attackAction;
@@ -80,5 +78,5 @@ public class PlayerController : CharacterController
 
     private void OnBlockAction(InputAction.CallbackContext context) => InvokeBlock();
 
-    private void OnPauseAction(InputAction.CallbackContext context) => LevelManager.PauseGame();
+    private void OnPauseAction(InputAction.CallbackContext context) => GameManager.Instance.PauseGame();
 }
