@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        //DontDestroyOnLoad(this);
+    }
 
     private void OnEnable()
     {
