@@ -5,17 +5,12 @@ public class SceneTransitionButton : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
-        GameManager.Instance.ChangeScene(sceneName, true);
+        GameManager.Instance.LevelManager.LoadScene(sceneName);
     }
 
     public void UnloadScene(string sceneName)
     {
-        GameManager.Instance.ChangeScene(sceneName, false);
-    }
-
-    public void LoadNextScene()
-    {
-        GameManager.Instance.LoadNextScene();
+        GameManager.Instance.LevelManager.UnloadScene(sceneName);
     }
     
     public void QuitGame()

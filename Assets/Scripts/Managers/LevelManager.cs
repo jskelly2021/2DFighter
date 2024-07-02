@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
-        Debug.Log("Loading " + sceneName + "From sceneManager");
+        Debug.Log("Loading " + sceneName + " from sceneManager");
         SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 
         StartCoroutine(SetSceneActive(SceneManager.GetSceneByName(sceneName)));
@@ -27,11 +27,6 @@ public class LevelManager : MonoBehaviour
             SceneManager.UnloadSceneAsync(sceneName);
             Debug.Log("Unloaded " + sceneName);
         }
-    }
-
-    public void LoadNextScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private IEnumerator SetSceneActive(Scene scene)

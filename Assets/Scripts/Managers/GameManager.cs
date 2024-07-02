@@ -5,7 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
 
-    public LevelManager levelManager { get; private set; }
+    public LevelManager LevelManager { get; private set; }
+
 
     private void Awake()
     {
@@ -21,19 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void InitManagers()
     {
-        levelManager = GameObject.FindFirstObjectByType<LevelManager>();
-    }
-
-    public void ChangeScene(string sceneName, bool load)
-    {
-        if (load)
-            levelManager.LoadScene(sceneName);  
-        else
-            levelManager.UnloadScene(sceneName);
-    }
-    public void LoadNextScene()
-    {
-        levelManager.LoadNextScene();
+        LevelManager = GameObject.FindFirstObjectByType<LevelManager>();
     }
 
     public void PauseGame()
