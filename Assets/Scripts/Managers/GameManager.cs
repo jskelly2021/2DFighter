@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void InitManagers()
     {
-        levelManager = new LevelManager();
+        levelManager = GameObject.FindFirstObjectByType<LevelManager>();
     }
 
     public void ChangeScene(string sceneName, bool load)
@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
             levelManager.LoadScene(sceneName);  
         else
             levelManager.UnloadScene(sceneName);
+    }
+    public void LoadNextScene()
+    {
+        levelManager.LoadNextScene();
     }
 
     public void PauseGame()

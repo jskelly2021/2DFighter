@@ -245,11 +245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898386703715332196, guid: 06487418a33632641881c4a08584e8de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UnloadScene
+      value: LoadScene
       objectReference: {fileID: 0}
     - target: {fileID: 3898386703715332196, guid: 06487418a33632641881c4a08584e8de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadScene
+      value: UnloadScene
       objectReference: {fileID: 0}
     - target: {fileID: 3898386703715332196, guid: 06487418a33632641881c4a08584e8de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -257,11 +257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898386703715332196, guid: 06487418a33632641881c4a08584e8de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: MainMenu
+      value: Level
       objectReference: {fileID: 0}
     - target: {fileID: 3898386703715332196, guid: 06487418a33632641881c4a08584e8de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: Level
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 3898386703715332196, guid: 06487418a33632641881c4a08584e8de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

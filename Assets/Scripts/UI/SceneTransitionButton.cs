@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class SceneTransitionButton : MonoBehaviour
@@ -14,6 +13,11 @@ public class SceneTransitionButton : MonoBehaviour
         GameManager.Instance.ChangeScene(sceneName, false);
     }
 
+    public void LoadNextScene()
+    {
+        GameManager.Instance.LoadNextScene();
+    }
+    
     public void QuitGame()
     {
         GameManager.Instance.QuitGame();
