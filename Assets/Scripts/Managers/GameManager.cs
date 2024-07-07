@@ -5,8 +5,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
 
+    public AudioManager AudioManager { get; private set; }
     public LevelManager LevelManager { get; private set; }
-
+    public PlayerManager PlayerManager { get; private set; }
 
     private void Awake()
     {
@@ -22,7 +23,9 @@ public class GameManager : MonoBehaviour
 
     private void InitManagers()
     {
-        LevelManager = GameObject.FindFirstObjectByType<LevelManager>();
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
+        LevelManager = GameObject.FindObjectOfType<LevelManager>();
+        PlayerManager = GameObject.FindObjectOfType<PlayerManager>();
     }
 
     public void PauseGame()

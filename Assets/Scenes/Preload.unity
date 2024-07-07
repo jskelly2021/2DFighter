@@ -310,6 +310,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 8407955199484874412, guid: 2bd03a3eba0ffee4b909e83336e0830a, type: 3}
+      propertyPath: m_MaxPlayerCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407955199484874412, guid: 2bd03a3eba0ffee4b909e83336e0830a, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8730303792302789508, guid: 2bd03a3eba0ffee4b909e83336e0830a, type: 3}
       propertyPath: m_RootOrder
       value: 0
