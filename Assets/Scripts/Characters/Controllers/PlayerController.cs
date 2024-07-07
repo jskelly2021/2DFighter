@@ -10,6 +10,7 @@ public class PlayerController : CharacterController
     private InputAction jumpAction;
     private InputAction attackAction;
     private InputAction blockAction;
+    private InputAction pauseAction;
 
     private void Awake()
     {
@@ -26,32 +27,33 @@ public class PlayerController : CharacterController
         jumpAction = playerInput.actions["Jump"];
         attackAction = playerInput.actions["Attack"];
         blockAction = playerInput.actions["Block"];
+        pauseAction = playerInput.actions["Pause"];
     }
 
-    private void OnEnable() => SubscribeActions(true);
-
-    private void OnDisable() => SubscribeActions(false);
-
-    private void SubscribeActions(bool subscribe)
+    private void OnEnable()
     {
         if (playerInput == null)
             return;
 
-        if (subscribe)
-        {
-            horizontalMoveAction.started += OnMoveAction;
-            horizontalMoveAction.performed += OnMoveAction;
-            horizontalMoveAction.canceled += OnMoveAction;
+        horizontalMoveAction.started += OnMoveAction;
+        horizontalMoveAction.performed += OnMoveAction;
+        horizontalMoveAction.canceled += OnMoveAction;
 
-            jumpAction.started += OnJumpAction;
+        jumpAction.started += OnJumpAction;
 
-            attackAction.started += OnAttackAction;
-            attackAction.canceled += OnAttackAction;
+        attackAction.started += OnAttackAction;
+        attackAction.canceled += OnAttackAction;
 
-            blockAction.started += OnBlockAction;
-            blockAction.canceled += OnBlockAction;
+        blockAction.started += OnBlockAction;
+        blockAction.canceled += OnBlockAction;
+
+        pauseAction.started += OnPauseAction;
+    }
+
+    private void OnDisable()
+    {
+        if (playerInput == null)
             return;
-        }
 
         horizontalMoveAction.started -= OnMoveAction;
         horizontalMoveAction.performed -= OnMoveAction;
@@ -64,6 +66,8 @@ public class PlayerController : CharacterController
 
         blockAction.started -= OnBlockAction;
         blockAction.canceled -= OnBlockAction;
+
+        pauseAction.started -= OnPauseAction;
     }
 
     private void OnMoveAction(InputAction.CallbackContext context) => characterBase.CurrentVelocity = context.ReadValue<float>();
@@ -73,4 +77,6 @@ public class PlayerController : CharacterController
     private void OnAttackAction(InputAction.CallbackContext context) => InvokeAttack();
 
     private void OnBlockAction(InputAction.CallbackContext context) => InvokeBlock();
+
+    private void OnPauseAction(InputAction.CallbackContext context) => GameManager.Instance.PauseGame();
 }
